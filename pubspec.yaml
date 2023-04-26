@@ -1,0 +1,20 @@
+name: bcp47
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: '>=2.19.5 <3.0.0'
+
+dependencies:
+  collection: ^1.17.1
+  meta: ^1.9.1
+  anthochamp_dart_essentials: 
+    git: git@github.com:anthochamp/dart-essentials.git
+
+dev_dependencies:
+  anthochamp_lints:
+    git: git@github.com:anthochamp/dart-lints.git
+  dart_code_metrics: ^5.7.2
+  lints: ^2.0.1
+  test: ^1.24.2
