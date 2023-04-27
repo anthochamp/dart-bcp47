@@ -1,6 +1,6 @@
-name: bcp47
-publish_to: 'none'
-version: 1.0.0
+name: ac_bcp47
+description: BCP-47 related types with parsing, formatting, canonicalization and format validation.
+version: 0.1.0
 repository: https://github.com/anthochamp/dart-bcp47
 
 environment:
@@ -9,13 +9,9 @@ environment:
 dependencies:
   collection: ^1.17.0
   meta: ^1.8.0
-  anthochamp_dart_essentials: 
-    git: git@github.com:anthochamp/dart-essentials.git
+  ac_dart_essentials: ^0.1.0
 
 dev_dependencies:
-  anthochamp_lints:
-    git: git@github.com:anthochamp/dart-lints.git
-  dart_code_metrics: ^5.7.2
+  ac_lints: ^0.1.0
   import_sorter: ^4.6.0
-  lints: ^2.0.1
   test: ^1.24.2

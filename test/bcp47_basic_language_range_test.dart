@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import 'package:bcp47/bcp47.dart';
+import 'package:ac_bcp47/ac_bcp47.dart';
 
 void main() {
   group('default constructor', () {

@@ -1,0 +1,39 @@
+name: Dart
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1.5.0
+
+      - id: install
+        run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart analyze --fatal-infos .
+        if: always() && steps.install.outcome == 'success'
+      - run: dart run dart_code_metrics:metrics analyze .
+        if: always() && steps.install.outcome == 'success'
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1.5.0
+
+      - id: install
+        run: dart pub get
+      - run: dart test
+        if: always() && steps.install.outcome == 'success'

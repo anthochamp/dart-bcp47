@@ -1,6 +1,10 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 // ignore_for_file: avoid-missing-enum-constant-in-map
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:collection/collection.dart';
 
 import 'bcp47_extended_language_range.dart';

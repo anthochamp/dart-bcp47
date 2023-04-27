@@ -1,8 +1,12 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 // ignore_for_file: member-ordering
 
 import 'dart:math';
 
-import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 
 import 'bcp47_basic_language_range.dart';
 import 'bcp47_constants.dart';

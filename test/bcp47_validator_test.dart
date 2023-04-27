@@ -1,5 +1,6 @@
 void main() {
-// https://web.archive.org/web/20210512041450/http://langtag.net/test-suites/invalid-tags.txt
+  // https://web.archive.org/web/20210512041450/http://langtag.net/test-suites/invalid-tags.txt
+  /*
   const kInvalidTags = [
     'ax-TZ', // Not in the registry, but well-formed
     'fra-Latn', // ISO 639 can be 3-letters
@@ -11,8 +12,10 @@ void main() {
     'de-DE-1902', // Wrong variant
     'fr-shadok', // Variant
   ];
+  */
 
-// https://web.archive.org/web/20210512051148/http://langtag.net/test-suites/valid-tags.txt
+  // https://web.archive.org/web/20210512051148/http://langtag.net/test-suites/valid-tags.txt
+  /*
   const kValidTags = [
     'fr',
     'fr-Latn',
@@ -65,4 +68,5 @@ void main() {
     'en-Latn-GB-boont-r-extended-sequence-x-private',
     'en-US-boont',
   ];
+  */
 }

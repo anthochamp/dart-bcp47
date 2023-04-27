@@ -1,3 +1,7 @@
+// Copyright 2023, Anthony Champagne. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'bcp47_grandfathered_tag.dart';
 import 'bcp47_lang_tag.dart';
 import 'bcp47_private_use_tag.dart';
