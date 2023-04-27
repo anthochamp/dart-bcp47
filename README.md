@@ -6,7 +6,7 @@ BCP-47 related types with parsing, formatting, canonicalization and format valid
 
 The following types are implemented :
 - [RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646) Language-Tag (langtag, grandfathered, privateuse), 
-- RFC 4647 [Basic](https://datatracker.ietf.org/doc/html/rfc4647#section-2.1) and [Extended](https://datatracker.ietf.org/doc/html/rfc4647#section-2.2) Language Range.
+- [RFC 4647](https://datatracker.ietf.org/doc/html/rfc4647) [Basic](https://datatracker.ietf.org/doc/html/rfc4647#section-2.1) and [Extended](https://datatracker.ietf.org/doc/html/rfc4647#section-2.2) Language Range.
 
 What it implements : 
 - **Parsing** and **formatting** (with letter case normalisation),
@@ -15,7 +15,7 @@ What it implements :
 - Basic and Extended **filtering** (cf. [RFC 4647 section 3.3](https://datatracker.ietf.org/doc/html/rfc4647#section-3.3))
 - Support for alternative subtags separator (like the underscore in CLDR data).
 
-What it does NOT implements:
+What it does NOT implement:
 - Validation of Language-Tag subtags against IANA registry data (except for grandfathered tags).
 
 ## Usage
@@ -26,7 +26,7 @@ If you're unsure what type of Language-Tag you're parsing, use `Bcp47LanguageTag
 
 ```dart
 const strings = [
-  'en-US',
+  'en',
   'i-unknown',
   'x-private',
 ];
@@ -59,7 +59,7 @@ for (final string in strings) {
 }
 ```
 
-else you can use directly the type you're parsing :
+else you can use directly the correct type :
 
 ```dart 
 const langTagString = 'en-US';
