@@ -1,5 +1,6 @@
-import 'package:bcp47/bcp47.dart';
 import 'package:test/test.dart';
+
+import 'package:bcp47/bcp47.dart';
 
 void main() {
   group('Simple language subtag', () {
@@ -291,8 +292,10 @@ void main() {
             Bcp47LanguageTag.parse('en-US-u-islamcal') as Bcp47LangTag;
         expect(languageTag.language, equals('en'));
         expect(languageTag.region, equals('US'));
-        expect(languageTag.extensions.map((e) => e.toString()),
-            equals(['u-islamcal']));
+        expect(
+          languageTag.extensions.map((e) => e.toString()),
+          equals(['u-islamcal']),
+        );
         expect(languageTag.toString(), 'en-US-u-islamcal');
       });
 
@@ -301,8 +304,10 @@ void main() {
             Bcp47LanguageTag.parse('zh-CN-a-myext-x-private') as Bcp47LangTag;
         expect(languageTag.language, equals('zh'));
         expect(languageTag.region, equals('CN'));
-        expect(languageTag.extensions.map((e) => e.toString()),
-            equals(['a-myext']));
+        expect(
+          languageTag.extensions.map((e) => e.toString()),
+          equals(['a-myext']),
+        );
         expect(languageTag.privateUse.toString(), equals('x-private'));
         expect(languageTag.toString(), 'zh-CN-a-myext-x-private');
       });
@@ -311,8 +316,10 @@ void main() {
         final languageTag =
             Bcp47LanguageTag.parse('en-a-myext-b-another') as Bcp47LangTag;
         expect(languageTag.language, equals('en'));
-        expect(languageTag.extensions.map((e) => e.toString()),
-            equals(['a-myext', 'b-another']));
+        expect(
+          languageTag.extensions.map((e) => e.toString()),
+          equals(['a-myext', 'b-another']),
+        );
         expect(languageTag.toString(), 'en-a-myext-b-another');
       });
     },

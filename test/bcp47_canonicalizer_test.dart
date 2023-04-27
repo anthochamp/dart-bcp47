@@ -1,5 +1,6 @@
-import 'package:bcp47/bcp47.dart';
 import 'package:test/test.dart';
+
+import 'package:bcp47/bcp47.dart';
 
 void main() {
   group('reorderVariants', () {

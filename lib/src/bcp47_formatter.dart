@@ -15,7 +15,9 @@ class Bcp47Formatter {
     bool? caseNormalized,
     String? separator,
   }) {
-    return (caseNormalized == true ? subtags.map((e) => e.toLowerCase()) : subtags)
+    return (caseNormalized == true
+            ? subtags.map((e) => e.toLowerCase())
+            : subtags)
         .join(separator ?? kBcp47Separator);
   }
 
@@ -32,13 +34,20 @@ class Bcp47Formatter {
   }) {
     // formatting rules from https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1.1
     return [
-      if (language != null) caseNormalized == true ? language.toLowerCase() : language,
-      ...?(caseNormalized == true ? extlangs?.map((e) => e.toLowerCase()) : extlangs),
-      if (script != null) caseNormalized == true ? script.toTitleCase() : script,
-      if (region != null) caseNormalized == true ? region.toUpperCase() : region,
-      ...?(caseNormalized == true ? variants?.map((e) => e.toLowerCase()) : variants),
-      ...?extensions
-          ?.map((e) => e.format(caseNormalized: caseNormalized, separator: separator)),
+      if (language != null)
+        caseNormalized == true ? language.toLowerCase() : language,
+      ...?(caseNormalized == true
+          ? extlangs?.map((e) => e.toLowerCase())
+          : extlangs),
+      if (script != null)
+        caseNormalized == true ? script.toTitleCase() : script,
+      if (region != null)
+        caseNormalized == true ? region.toUpperCase() : region,
+      ...?(caseNormalized == true
+          ? variants?.map((e) => e.toLowerCase())
+          : variants),
+      ...?extensions?.map((e) =>
+          e.format(caseNormalized: caseNormalized, separator: separator)),
       if (privateUse != null)
         privateUse.format(caseNormalized: caseNormalized, separator: separator),
     ].join(separator ?? kBcp47Separator);

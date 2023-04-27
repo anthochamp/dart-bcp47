@@ -1,9 +1,9 @@
-import 'bcp47_validator.dart';
 import 'package:meta/meta.dart';
 
 import 'bcp47_language_tag.dart';
 import 'bcp47_language_tag_mixin.dart';
 import 'bcp47_typedefs.dart';
+import 'bcp47_validator.dart';
 
 typedef Bcp47Singleton = Bcp47Subtag;
 

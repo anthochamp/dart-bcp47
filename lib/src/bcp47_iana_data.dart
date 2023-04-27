@@ -520,202 +520,642 @@ final kBcp47IanaPrefix = [
   // Prefix (type Variant)
 
   // Late Middle French (to 1606) (added 2007-03-20)
-  [Bcp47LangTagSubtag.variant, '1606nict', Bcp47ExtendedLanguageRange.parse('frm')],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1606nict',
+    Bcp47ExtendedLanguageRange.parse('frm')
+  ],
   // Early Modern French (added 2007-03-20)
-  [Bcp47LangTagSubtag.variant, '1694acad', Bcp47ExtendedLanguageRange.parse('fr')],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1694acad',
+    Bcp47ExtendedLanguageRange.parse('fr')
+  ],
   // Traditional German orthography (added 2005-10-16)
   [Bcp47LangTagSubtag.variant, '1901', Bcp47ExtendedLanguageRange.parse('de')],
   // "Academic" ("governmental") variant of Belarusian as codified in 1959 (added 2008-09-30)
-  [Bcp47LangTagSubtag.variant, '1959acad', Bcp47ExtendedLanguageRange.parse('be')],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1959acad',
+    Bcp47ExtendedLanguageRange.parse('be')
+  ],
   // Standardized Resian orthography (added 2007-07-28)
-  [Bcp47LangTagSubtag.variant, '1994', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
-  [Bcp47LangTagSubtag.variant, '1994', Bcp47ExtendedLanguageRange.parse('sl-rozaj-biske')],
-  [Bcp47LangTagSubtag.variant, '1994', Bcp47ExtendedLanguageRange.parse('sl-rozaj-njiva')],
-  [Bcp47LangTagSubtag.variant, '1994', Bcp47ExtendedLanguageRange.parse('sl-rozaj-osojs')],
-  [Bcp47LangTagSubtag.variant, '1994', Bcp47ExtendedLanguageRange.parse('sl-rozaj-solba')],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1994',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1994',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj-biske')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1994',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj-njiva')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1994',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj-osojs')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    '1994',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj-solba')
+  ],
   // German orthography of 1996 (added 2005-10-16)
   [Bcp47LangTagSubtag.variant, '1996', Bcp47ExtendedLanguageRange.parse('de')],
   // Orthographic formulation of 1943 - Official in Brazil (Formulário Ortográfico de 1943 - Oficial no Brasil) (added 2015-05-06)
-  [Bcp47LangTagSubtag.variant, 'abl1943', Bcp47ExtendedLanguageRange.parse('pt-BR')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'abl1943',
+    Bcp47ExtendedLanguageRange.parse('pt-BR')
+  ],
   // Akuapem Twi (added 2017-06-05)
-  [Bcp47LangTagSubtag.variant, 'akuapem', Bcp47ExtendedLanguageRange.parse('tw')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'akuapem',
+    Bcp47ExtendedLanguageRange.parse('tw')
+  ],
   // Aluku dialect, Boni dialect (added 2009-09-05)
-  [Bcp47LangTagSubtag.variant, 'aluku', Bcp47ExtendedLanguageRange.parse('djk')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'aluku',
+    Bcp47ExtendedLanguageRange.parse('djk')
+  ],
   // Portuguese Language Orthographic Agreement of 1990 (Acordo Ortográfico da Língua Portuguesa de 1990) (added 2015-05-06)
-  [Bcp47LangTagSubtag.variant, 'ao1990', Bcp47ExtendedLanguageRange.parse('pt')],
-  [Bcp47LangTagSubtag.variant, 'ao1990', Bcp47ExtendedLanguageRange.parse('gl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ao1990',
+    Bcp47ExtendedLanguageRange.parse('pt')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ao1990',
+    Bcp47ExtendedLanguageRange.parse('gl')
+  ],
   // Aranese (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'aranes', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'aranes',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Eastern Armenian (added 2006-09-18, deprecated 2018-03-24)
-  [Bcp47LangTagSubtag.variant, 'arevela', Bcp47ExtendedLanguageRange.parse('hy')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'arevela',
+    Bcp47ExtendedLanguageRange.parse('hy')
+  ],
   // Western Armenian (added 2006-09-18, deprecated 2018-03-24)
-  [Bcp47LangTagSubtag.variant, 'arevmda', Bcp47ExtendedLanguageRange.parse('hy')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'arevmda',
+    Bcp47ExtendedLanguageRange.parse('hy')
+  ],
   // Arcaicam Esperantom, Arkaika Esperanto (added 2020-12-17)
-  [Bcp47LangTagSubtag.variant, 'arkaika', Bcp47ExtendedLanguageRange.parse('eo')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'arkaika',
+    Bcp47ExtendedLanguageRange.parse('eo')
+  ],
   // Asante Twi, Ashanti Twi (added 2017-06-05)
-  [Bcp47LangTagSubtag.variant, 'asante', Bcp47ExtendedLanguageRange.parse('tw')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'asante',
+    Bcp47ExtendedLanguageRange.parse('tw')
+  ],
   // Auvergnat (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'auvern', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'auvern',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Unified Turkic Latin Alphabet (Historical) (added 2007-04-18)
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('az')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('ba')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('crh')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('kk')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('krc')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('ky')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('sah')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('tk')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('tt')],
-  [Bcp47LangTagSubtag.variant, 'baku1926', Bcp47ExtendedLanguageRange.parse('uz')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('az')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('ba')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('crh')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('kk')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('krc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('ky')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('sah')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('tk')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('tt')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'baku1926',
+    Bcp47ExtendedLanguageRange.parse('uz')
+  ],
   // The Balanka dialect of Anii (added 2014-02-15)
-  [Bcp47LangTagSubtag.variant, 'balanka', Bcp47ExtendedLanguageRange.parse('blo')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'balanka',
+    Bcp47ExtendedLanguageRange.parse('blo')
+  ],
   // The Barlavento dialect group of Kabuverdianu (added 2013-12-10)
-  [Bcp47LangTagSubtag.variant, 'barla', Bcp47ExtendedLanguageRange.parse('kea')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'barla',
+    Bcp47ExtendedLanguageRange.parse('kea')
+  ],
   // Basic English (added 2015-12-29)
-  [Bcp47LangTagSubtag.variant, 'basiceng', Bcp47ExtendedLanguageRange.parse('en')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'basiceng',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
   // Buddhist Hybrid Sanskrit (added 2010-07-28)
-  [Bcp47LangTagSubtag.variant, 'bauddha', Bcp47ExtendedLanguageRange.parse('sa')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'bauddha',
+    Bcp47ExtendedLanguageRange.parse('sa')
+  ],
   // Biscayan dialect of Basque (added 2010-04-13)
-  [Bcp47LangTagSubtag.variant, 'biscayan', Bcp47ExtendedLanguageRange.parse('eu')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'biscayan',
+    Bcp47ExtendedLanguageRange.parse('eu')
+  ],
   // The San Giorgio dialect of Resian, The Bila dialect of Resian (added 2007-07-05)
-  [Bcp47LangTagSubtag.variant, 'biske', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'biske',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
   // Slovene in Bohorič alphabet (added 2012-06-27)
-  [Bcp47LangTagSubtag.variant, 'bohoric', Bcp47ExtendedLanguageRange.parse('sl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'bohoric',
+    Bcp47ExtendedLanguageRange.parse('sl')
+  ],
   // Boontling (added 2006-09-18)
   [Bcp47LangTagSubtag.variant, 'boont', Bcp47ExtendedLanguageRange.parse('en')],
   // Bornholmsk (added 2019-03-27)
-  [Bcp47LangTagSubtag.variant, 'bornholm', Bcp47ExtendedLanguageRange.parse('da')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'bornholm',
+    Bcp47ExtendedLanguageRange.parse('da')
+  ],
   // Cisalpine (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'cisaup', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'cisaup',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Portuguese-Brazilian Orthographic Convention of 1945 (Convenção Ortográfica Luso-Brasileira de 1945) (added 2015-05-06)
-  [Bcp47LangTagSubtag.variant, 'colb1945', Bcp47ExtendedLanguageRange.parse('pt')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'colb1945',
+    Bcp47ExtendedLanguageRange.parse('pt')
+  ],
   // Cornu-English, Cornish English, Anglo-Cornish (added 2015-12-07)
   [Bcp47LangTagSubtag.variant, 'cornu', Bcp47ExtendedLanguageRange.parse('en')],
   // Occitan variants of the Croissant area (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'creiss', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'creiss',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Slovene in Dajnko alphabet (added 2012-06-27)
-  [Bcp47LangTagSubtag.variant, 'dajnko', Bcp47ExtendedLanguageRange.parse('sl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'dajnko',
+    Bcp47ExtendedLanguageRange.parse('sl')
+  ],
   // Serbian with Ekavian pronunciation (added 2013-12-02)
-  [Bcp47LangTagSubtag.variant, 'ekavsk', Bcp47ExtendedLanguageRange.parse('sr')],
-  [Bcp47LangTagSubtag.variant, 'ekavsk', Bcp47ExtendedLanguageRange.parse('sr-Latn')],
-  [Bcp47LangTagSubtag.variant, 'ekavsk', Bcp47ExtendedLanguageRange.parse('sr-Cyrl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr-Latn')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr-Cyrl')
+  ],
   // Early Modern English (1500-1700) (added 2012-02-05)
-  [Bcp47LangTagSubtag.variant, 'emodeng', Bcp47ExtendedLanguageRange.parse('en')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'emodeng',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
   // Gallo (added 2021-08-05)
   [Bcp47LangTagSubtag.variant, 'gallo', Bcp47ExtendedLanguageRange.parse('fr')],
   // Gascon (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'gascon', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'gascon',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Classical Occitan orthography (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-aranes')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-auvern')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-cisaup')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-creiss')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-gascon')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-lemosin')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-lengadoc')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-nicard')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-provenc')],
-  [Bcp47LangTagSubtag.variant, 'grclass', Bcp47ExtendedLanguageRange.parse('oc-vivaraup')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-aranes')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-auvern')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-cisaup')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-creiss')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-gascon')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-lemosin')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-lengadoc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-nicard')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-provenc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grclass',
+    Bcp47ExtendedLanguageRange.parse('oc-vivaraup')
+  ],
   // Italian-inspired Occitan orthography (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'grital', Bcp47ExtendedLanguageRange.parse('oc')],
-  [Bcp47LangTagSubtag.variant, 'grital', Bcp47ExtendedLanguageRange.parse('oc-cisaup')],
-  [Bcp47LangTagSubtag.variant, 'grital', Bcp47ExtendedLanguageRange.parse('oc-nicard')],
-  [Bcp47LangTagSubtag.variant, 'grital', Bcp47ExtendedLanguageRange.parse('oc-provenc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grital',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grital',
+    Bcp47ExtendedLanguageRange.parse('oc-cisaup')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grital',
+    Bcp47ExtendedLanguageRange.parse('oc-nicard')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grital',
+    Bcp47ExtendedLanguageRange.parse('oc-provenc')
+  ],
   // Mistralian or Mistralian-inspired Occitan orthography (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-aranes')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-auvern')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-cisaup')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-creiss')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-gascon')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-lemosin')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-lengadoc')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-nicard')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-provenc')],
-  [Bcp47LangTagSubtag.variant, 'grmistr', Bcp47ExtendedLanguageRange.parse('oc-vivaraup')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-aranes')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-auvern')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-cisaup')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-creiss')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-gascon')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-lemosin')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-lengadoc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-nicard')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-provenc')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'grmistr',
+    Bcp47ExtendedLanguageRange.parse('oc-vivaraup')
+  ],
   // Hepburn romanization (added 2009-10-01)
-  [Bcp47LangTagSubtag.variant, 'hepburn', Bcp47ExtendedLanguageRange.parse('ja-Latn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'hepburn',
+    Bcp47ExtendedLanguageRange.parse('ja-Latn')
+  ],
   // Hepburn romanization, Library of Congress method (added 2009-10-01, deprecated 2010-02-07)
-  [Bcp47LangTagSubtag.variant, 'heploc', Bcp47ExtendedLanguageRange.parse('ja-Latn-hepburn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'heploc',
+    Bcp47ExtendedLanguageRange.parse('ja-Latn-hepburn')
+  ],
   // Norwegian in Høgnorsk (High Norwegian) orthography (added 2010-01-02)
-  [Bcp47LangTagSubtag.variant, 'hognorsk', Bcp47ExtendedLanguageRange.parse('nn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'hognorsk',
+    Bcp47ExtendedLanguageRange.parse('nn')
+  ],
   // Standard H-system orthographic fallback for spelling Esperanto (added 2017-03-14)
-  [Bcp47LangTagSubtag.variant, 'hsistemo', Bcp47ExtendedLanguageRange.parse('eo')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'hsistemo',
+    Bcp47ExtendedLanguageRange.parse('eo')
+  ],
   // Serbian with Ijekavian pronunciation (added 2013-12-02)
-  [Bcp47LangTagSubtag.variant, 'ijekavsk', Bcp47ExtendedLanguageRange.parse('sr')],
-  [Bcp47LangTagSubtag.variant, 'ijekavsk', Bcp47ExtendedLanguageRange.parse('sr-Latn')],
-  [Bcp47LangTagSubtag.variant, 'ijekavsk', Bcp47ExtendedLanguageRange.parse('sr-Cyrl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ijekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ijekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr-Latn')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ijekavsk',
+    Bcp47ExtendedLanguageRange.parse('sr-Cyrl')
+  ],
   // Epic Sanskrit (added 2010-07-28)
-  [Bcp47LangTagSubtag.variant, 'itihasa', Bcp47ExtendedLanguageRange.parse('sa')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'itihasa',
+    Bcp47ExtendedLanguageRange.parse('sa')
+  ],
   // Bulgarian in 1899 orthography (added 2017-12-13)
-  [Bcp47LangTagSubtag.variant, 'ivanchov', Bcp47ExtendedLanguageRange.parse('bg')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ivanchov',
+    Bcp47ExtendedLanguageRange.parse('bg')
+  ],
   // Jauer dialect of Romansh (added 2010-06-29)
   [Bcp47LangTagSubtag.variant, 'jauer', Bcp47ExtendedLanguageRange.parse('rm')],
   // Jyutping Cantonese Romanization (added 2010-10-23)
-  [Bcp47LangTagSubtag.variant, 'jyutping', Bcp47ExtendedLanguageRange.parse('yue')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'jyutping',
+    Bcp47ExtendedLanguageRange.parse('yue')
+  ],
   // Common Cornish orthography of Revived Cornish (added 2008-10-14)
   [Bcp47LangTagSubtag.variant, 'kkcor', Bcp47ExtendedLanguageRange.parse('kw')],
   // The Kociewie dialect of Polish (added 2014-11-27)
-  [Bcp47LangTagSubtag.variant, 'kociewie', Bcp47ExtendedLanguageRange.parse('pl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'kociewie',
+    Bcp47ExtendedLanguageRange.parse('pl')
+  ],
   // Standard Cornish orthography of Revived Cornish, Kernowek Standard (added 2012-06-27)
   [Bcp47LangTagSubtag.variant, 'kscor', Bcp47ExtendedLanguageRange.parse('kw')],
   // Classical Sanskrit (added 2010-07-28)
-  [Bcp47LangTagSubtag.variant, 'laukika', Bcp47ExtendedLanguageRange.parse('sa')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'laukika',
+    Bcp47ExtendedLanguageRange.parse('sa')
+  ],
   // Limousin (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'lemosin', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'lemosin',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Languedocien (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'lengadoc', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'lengadoc',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // The Lipovaz dialect of Resian, The Lipovec dialect of Resian (added 2007-08-11)
-  [Bcp47LangTagSubtag.variant, 'lipaw', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'lipaw',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
   // The Latgalian language orthography codified in 1929 (added 2022-08-05)
-  [Bcp47LangTagSubtag.variant, 'ltg1929', Bcp47ExtendedLanguageRange.parse('ltg')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ltg1929',
+    Bcp47ExtendedLanguageRange.parse('ltg')
+  ],
   // The Latgalian language orthography codified in the language law in 2007 (added 2022-06-23)
-  [Bcp47LangTagSubtag.variant, 'ltg2007', Bcp47ExtendedLanguageRange.parse('ltg')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ltg2007',
+    Bcp47ExtendedLanguageRange.parse('ltg')
+  ],
   // Post-1917 Russian orthography (added 2010-10-10)
-  [Bcp47LangTagSubtag.variant, 'luna1918', Bcp47ExtendedLanguageRange.parse('ru')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'luna1918',
+    Bcp47ExtendedLanguageRange.parse('ru')
+  ],
   // Slovene in Metelko alphabet (added 2012-06-27)
-  [Bcp47LangTagSubtag.variant, 'metelko', Bcp47ExtendedLanguageRange.parse('sl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'metelko',
+    Bcp47ExtendedLanguageRange.parse('sl')
+  ],
   // Monotonic Greek (added 2006-12-11)
-  [Bcp47LangTagSubtag.variant, 'monoton', Bcp47ExtendedLanguageRange.parse('el')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'monoton',
+    Bcp47ExtendedLanguageRange.parse('el')
+  ],
   // Ndyuka dialect, Aukan dialect (added 2009-09-05)
-  [Bcp47LangTagSubtag.variant, 'ndyuka', Bcp47ExtendedLanguageRange.parse('djk')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ndyuka',
+    Bcp47ExtendedLanguageRange.parse('djk')
+  ],
   // Natisone dialect, Nadiza dialect (added 2005-10-16)
   [Bcp47LangTagSubtag.variant, 'nedis', Bcp47ExtendedLanguageRange.parse('sl')],
   // Newfoundland English (added 2015-11-25)
-  [Bcp47LangTagSubtag.variant, 'newfound', Bcp47ExtendedLanguageRange.parse('en-CA')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'newfound',
+    Bcp47ExtendedLanguageRange.parse('en-CA')
+  ],
   // Niçard (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'nicard', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'nicard',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // The Gniva dialect of Resian, The Njiva dialect of Resian (added 2007-07-05)
-  [Bcp47LangTagSubtag.variant, 'njiva', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'njiva',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
   // Volapük nulik, Volapük perevidöl, Volapük nulädik, de Jong's Volapük, New Volapük, Revised Volapük, Modern Volapük (added 2012-01-28)
   [Bcp47LangTagSubtag.variant, 'nulik', Bcp47ExtendedLanguageRange.parse('vo')],
   // The Oseacco dialect of Resian, The Osojane dialect of Resian (added 2007-07-05)
-  [Bcp47LangTagSubtag.variant, 'osojs', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'osojs',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
   // Oxford English Dictionary spelling (added 2015-04-17)
-  [Bcp47LangTagSubtag.variant, 'oxendict', Bcp47ExtendedLanguageRange.parse('en')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'oxendict',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
   // Pahawh Hmong Second Stage Reduced orthography (added 2017-01-13)
-  [Bcp47LangTagSubtag.variant, 'pahawh2', Bcp47ExtendedLanguageRange.parse('mww')],
-  [Bcp47LangTagSubtag.variant, 'pahawh2', Bcp47ExtendedLanguageRange.parse('hnj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh2',
+    Bcp47ExtendedLanguageRange.parse('mww')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh2',
+    Bcp47ExtendedLanguageRange.parse('hnj')
+  ],
   // Pahawh Hmong Third Stage Reduced orthography (added 2017-01-13)
-  [Bcp47LangTagSubtag.variant, 'pahawh3', Bcp47ExtendedLanguageRange.parse('mww')],
-  [Bcp47LangTagSubtag.variant, 'pahawh3', Bcp47ExtendedLanguageRange.parse('hnj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh3',
+    Bcp47ExtendedLanguageRange.parse('mww')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh3',
+    Bcp47ExtendedLanguageRange.parse('hnj')
+  ],
   // Pahawh Hmong Final Version orthography (added 2017-01-13)
-  [Bcp47LangTagSubtag.variant, 'pahawh4', Bcp47ExtendedLanguageRange.parse('mww')],
-  [Bcp47LangTagSubtag.variant, 'pahawh4', Bcp47ExtendedLanguageRange.parse('hnj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh4',
+    Bcp47ExtendedLanguageRange.parse('mww')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pahawh4',
+    Bcp47ExtendedLanguageRange.parse('hnj')
+  ],
   // Pamaka dialect (added 2009-09-05)
-  [Bcp47LangTagSubtag.variant, 'pamaka', Bcp47ExtendedLanguageRange.parse('djk')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pamaka',
+    Bcp47ExtendedLanguageRange.parse('djk')
+  ],
   // Latino Sine Flexione, Interlingua de API, Interlingua de Peano (added 2020-03-12)
   [Bcp47LangTagSubtag.variant, 'peano', Bcp47ExtendedLanguageRange.parse('la')],
   // Petrine orthography (added 2010-10-10)
-  [Bcp47LangTagSubtag.variant, 'petr1708', Bcp47ExtendedLanguageRange.parse('ru')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'petr1708',
+    Bcp47ExtendedLanguageRange.parse('ru')
+  ],
   // Pinyin romanization (added 2008-10-14)
-  [Bcp47LangTagSubtag.variant, 'pinyin', Bcp47ExtendedLanguageRange.parse('zh-Latn')],
-  [Bcp47LangTagSubtag.variant, 'pinyin', Bcp47ExtendedLanguageRange.parse('bo-Latn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pinyin',
+    Bcp47ExtendedLanguageRange.parse('zh-Latn')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'pinyin',
+    Bcp47ExtendedLanguageRange.parse('bo-Latn')
+  ],
   // Polytonic Greek (added 2006-12-11)
-  [Bcp47LangTagSubtag.variant, 'polyton', Bcp47ExtendedLanguageRange.parse('el')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'polyton',
+    Bcp47ExtendedLanguageRange.parse('el')
+  ],
   // Provençal (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'provenc', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'provenc',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Puter idiom of Romansh (added 2010-06-29)
   [Bcp47LangTagSubtag.variant, 'puter', Bcp47ExtendedLanguageRange.parse('rm')],
   // Volapük rigik, Schleyer's Volapük, Original Volapük, Classic Volapük (added 2012-01-28)
@@ -725,56 +1165,164 @@ final kBcp47IanaPrefix = [
   // Rumantsch Grischun (added 2010-06-29)
   [Bcp47LangTagSubtag.variant, 'rumgr', Bcp47ExtendedLanguageRange.parse('rm')],
   // Scottish Standard English (added 2007-08-31)
-  [Bcp47LangTagSubtag.variant, 'scotland', Bcp47ExtendedLanguageRange.parse('en')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'scotland',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
   // Scouse (added 2006-09-18)
-  [Bcp47LangTagSubtag.variant, 'scouse', Bcp47ExtendedLanguageRange.parse('en')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'scouse',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
   // The Stolvizza dialect of Resian, The Solbica dialect of Resian (added 2007-07-05)
-  [Bcp47LangTagSubtag.variant, 'solba', Bcp47ExtendedLanguageRange.parse('sl-rozaj')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'solba',
+    Bcp47ExtendedLanguageRange.parse('sl-rozaj')
+  ],
   // The Sotavento dialect group of Kabuverdianu (added 2013-12-10)
-  [Bcp47LangTagSubtag.variant, 'sotav', Bcp47ExtendedLanguageRange.parse('kea')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'sotav',
+    Bcp47ExtendedLanguageRange.parse('kea')
+  ],
   // Spanglish (added 2017-02-23)
-  [Bcp47LangTagSubtag.variant, 'spanglis', Bcp47ExtendedLanguageRange.parse('en')],
-  [Bcp47LangTagSubtag.variant, 'spanglis', Bcp47ExtendedLanguageRange.parse('es')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'spanglis',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'spanglis',
+    Bcp47ExtendedLanguageRange.parse('es')
+  ],
   // Surmiran idiom of Romansh (added 2010-06-29)
-  [Bcp47LangTagSubtag.variant, 'surmiran', Bcp47ExtendedLanguageRange.parse('rm')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'surmiran',
+    Bcp47ExtendedLanguageRange.parse('rm')
+  ],
   // Sursilvan idiom of Romansh (added 2010-06-29)
-  [Bcp47LangTagSubtag.variant, 'sursilv', Bcp47ExtendedLanguageRange.parse('rm')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'sursilv',
+    Bcp47ExtendedLanguageRange.parse('rm')
+  ],
   // Sutsilvan idiom of Romansh (added 2010-06-29)
-  [Bcp47LangTagSubtag.variant, 'sutsilv', Bcp47ExtendedLanguageRange.parse('rm')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'sutsilv',
+    Bcp47ExtendedLanguageRange.parse('rm')
+  ],
   // Synnejysk, South Jutish (added 2021-07-17)
-  [Bcp47LangTagSubtag.variant, 'synnejyl', Bcp47ExtendedLanguageRange.parse('da')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'synnejyl',
+    Bcp47ExtendedLanguageRange.parse('da')
+  ],
   // Belarusian in Taraskievica orthography (added 2007-04-27)
-  [Bcp47LangTagSubtag.variant, 'tarask', Bcp47ExtendedLanguageRange.parse('be')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'tarask',
+    Bcp47ExtendedLanguageRange.parse('be')
+  ],
   // Tongyong Pinyin romanization (added 2020-06-08)
-  [Bcp47LangTagSubtag.variant, 'tongyong', Bcp47ExtendedLanguageRange.parse('zh-Latn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'tongyong',
+    Bcp47ExtendedLanguageRange.parse('zh-Latn')
+  ],
   // Tunumiisiut, East Greenlandic, Østgrønlandsk (added 2020-07-16)
-  [Bcp47LangTagSubtag.variant, 'tunumiit', Bcp47ExtendedLanguageRange.parse('kl')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'tunumiit',
+    Bcp47ExtendedLanguageRange.parse('kl')
+  ],
   // Unified Cornish orthography of Revived Cornish (added 2008-10-14)
   [Bcp47LangTagSubtag.variant, 'uccor', Bcp47ExtendedLanguageRange.parse('kw')],
   // Unified Cornish Revised orthography of Revived Cornish (added 2008-10-14)
-  [Bcp47LangTagSubtag.variant, 'ucrcor', Bcp47ExtendedLanguageRange.parse('kw')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ucrcor',
+    Bcp47ExtendedLanguageRange.parse('kw')
+  ],
   // Ulster dialect of Scots (added 2010-04-10)
-  [Bcp47LangTagSubtag.variant, 'ulster', Bcp47ExtendedLanguageRange.parse('sco')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'ulster',
+    Bcp47ExtendedLanguageRange.parse('sco')
+  ],
   // Unifon phonetic alphabet (added 2013-10-02)
-  [Bcp47LangTagSubtag.variant, 'unifon', Bcp47ExtendedLanguageRange.parse('en')],
-  [Bcp47LangTagSubtag.variant, 'unifon', Bcp47ExtendedLanguageRange.parse('hup')],
-  [Bcp47LangTagSubtag.variant, 'unifon', Bcp47ExtendedLanguageRange.parse('kyh')],
-  [Bcp47LangTagSubtag.variant, 'unifon', Bcp47ExtendedLanguageRange.parse('tol')],
-  [Bcp47LangTagSubtag.variant, 'unifon', Bcp47ExtendedLanguageRange.parse('yur')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'unifon',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'unifon',
+    Bcp47ExtendedLanguageRange.parse('hup')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'unifon',
+    Bcp47ExtendedLanguageRange.parse('kyh')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'unifon',
+    Bcp47ExtendedLanguageRange.parse('tol')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'unifon',
+    Bcp47ExtendedLanguageRange.parse('yur')
+  ],
   // Vedic Sanskrit (added 2010-07-28)
-  [Bcp47LangTagSubtag.variant, 'vaidika', Bcp47ExtendedLanguageRange.parse('sa')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'vaidika',
+    Bcp47ExtendedLanguageRange.parse('sa')
+  ],
   // Valencian (added 2007-03-06)
-  [Bcp47LangTagSubtag.variant, 'valencia', Bcp47ExtendedLanguageRange.parse('ca')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'valencia',
+    Bcp47ExtendedLanguageRange.parse('ca')
+  ],
   // Vallader idiom of Romansh (added 2010-06-29)
-  [Bcp47LangTagSubtag.variant, 'vallader', Bcp47ExtendedLanguageRange.parse('rm')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'vallader',
+    Bcp47ExtendedLanguageRange.parse('rm')
+  ],
   // Latvian orthography used before 1920s ("vecā druka") (added 2020-09-26)
-  [Bcp47LangTagSubtag.variant, 'vecdruka', Bcp47ExtendedLanguageRange.parse('lv')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'vecdruka',
+    Bcp47ExtendedLanguageRange.parse('lv')
+  ],
   // Vivaro-Alpine (added 2018-04-22)
-  [Bcp47LangTagSubtag.variant, 'vivaraup', Bcp47ExtendedLanguageRange.parse('oc')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'vivaraup',
+    Bcp47ExtendedLanguageRange.parse('oc')
+  ],
   // Wade-Giles romanization (added 2008-10-03)
-  [Bcp47LangTagSubtag.variant, 'wadegile', Bcp47ExtendedLanguageRange.parse('zh-Latn')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'wadegile',
+    Bcp47ExtendedLanguageRange.parse('zh-Latn')
+  ],
   // Standard X-system orthographic fallback for spelling Esperanto (added 2017-03-14)
-  [Bcp47LangTagSubtag.variant, 'xsistemo', Bcp47ExtendedLanguageRange.parse('eo')],
+  [
+    Bcp47LangTagSubtag.variant,
+    'xsistemo',
+    Bcp47ExtendedLanguageRange.parse('eo')
+  ],
 ];
 
 // Preferred Language values

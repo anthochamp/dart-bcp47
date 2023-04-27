@@ -2,6 +2,7 @@
 
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
 import 'package:collection/collection.dart';
+
 import 'bcp47_extended_language_range.dart';
 import 'bcp47_grandfathered_tag.dart';
 import 'bcp47_iana_data.dart';
@@ -372,7 +373,7 @@ class Bcp47Canonicalizer {
       variantsPrefixes.remove(bestMatchingVariant);
     } while (variantsPrefixes.isNotEmpty);
 
-    // finalize by adding the last orderedVariants added and 
+    // finalize by adding the last orderedVariants added and
     // leftovers to the sorted general purposed variants.
     currentLangTag = currentLangTag.replace({
       Bcp47LangTagSubtag.variant: [

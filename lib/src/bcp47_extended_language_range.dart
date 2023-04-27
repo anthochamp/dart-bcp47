@@ -1,12 +1,12 @@
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:meta/meta.dart';
 
+import 'bcp47_basic_language_range.dart';
 import 'bcp47_constants.dart';
 import 'bcp47_language_range.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_parser.dart';
-import 'bcp47_basic_language_range.dart';
 import 'bcp47_validator.dart';
-import 'package:meta/meta.dart';
 
 // https://www.rfc-editor.org/rfc/rfc4647#section-2.2
 
@@ -25,7 +25,10 @@ class Bcp47ExtendedLanguageRange implements Bcp47LanguageRange {
     Pattern? separatorPattern,
   }) {
     return Bcp47ExtendedLanguageRange(
-      values: string.split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false)),
+      values: string.split(RegExp(
+        (separatorPattern ?? kBcp47Separator).toString(),
+        caseSensitive: false,
+      )),
     );
   }
 

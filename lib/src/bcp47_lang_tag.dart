@@ -1,15 +1,14 @@
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
-
-import 'bcp47_formatter.dart';
-import 'bcp47_private_use_tag.dart';
-import 'bcp47_validator.dart';
 import 'package:meta/meta.dart';
 
 import 'bcp47_extension.dart';
+import 'bcp47_formatter.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_language_tag_mixin.dart';
 import 'bcp47_parser.dart';
+import 'bcp47_private_use_tag.dart';
 import 'bcp47_typedefs.dart';
+import 'bcp47_validator.dart';
 
 enum Bcp47LangTagSubtag {
   language,

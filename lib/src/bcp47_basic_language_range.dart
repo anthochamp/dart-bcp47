@@ -1,4 +1,5 @@
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
+import 'package:meta/meta.dart';
 
 import 'bcp47_constants.dart';
 import 'bcp47_language_range.dart';
@@ -7,8 +8,6 @@ import 'bcp47_language_tag_mixin.dart';
 import 'bcp47_parser.dart';
 import 'bcp47_typedefs.dart';
 import 'bcp47_validator.dart';
-
-import 'package:meta/meta.dart';
 
 /// A Basic Language Range as described in https://www.rfc-editor.org/rfc/rfc4647#section-2.1
 @immutable
@@ -51,7 +50,6 @@ class Bcp47BasicLanguageRange
   /// Basic Filtering as described in https://www.rfc-editor.org/rfc/rfc4647#section-3.3.1
   @override
   bool match(Bcp47LanguageTag languageTag) {
-    
     if (subtags.length == 1 && subtags.first == '*') {
       return true;
     }

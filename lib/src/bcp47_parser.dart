@@ -4,13 +4,13 @@ import 'dart:math';
 
 import 'package:anthochamp_dart_essentials/dart_essentials.dart';
 
+import 'bcp47_basic_language_range.dart';
 import 'bcp47_constants.dart';
 import 'bcp47_extension.dart';
 import 'bcp47_grandfathered_tag.dart';
 import 'bcp47_lang_tag.dart';
 import 'bcp47_private_use_tag.dart';
 import 'bcp47_singleton_tag.dart';
-import 'bcp47_basic_language_range.dart';
 import 'bcp47_typedefs.dart';
 
 class Bcp47Parser {
@@ -128,7 +128,10 @@ class Bcp47Parser {
 
     final Bcp47Subtags otherSubtags = match
         .namedGroup('subtags')!
-        .split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false))
+        .split(RegExp(
+          (separatorPattern ?? kBcp47Separator).toString(),
+          caseSensitive: false,
+        ))
         .skip(1);
 
     return Bcp47SingletonTag(
@@ -203,7 +206,10 @@ class Bcp47Parser {
       match.namedGroup('primary')!,
       ...match
           .namedGroup('subtags')!
-          .split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false))
+          .split(RegExp(
+            (separatorPattern ?? kBcp47Separator).toString(),
+            caseSensitive: false,
+          ))
           .skip(1),
     ];
 
@@ -230,13 +236,19 @@ class Bcp47Parser {
         match?.namedGroup('primary23') ?? match?.namedGroup('primary48');
     final extlangs = match
         ?.namedGroup('extlangs')
-        ?.split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false))
+        ?.split(RegExp(
+          (separatorPattern ?? kBcp47Separator).toString(),
+          caseSensitive: false,
+        ))
         .skip(1);
     Bcp47Subtag? script = match?.namedGroup('script');
     Bcp47Subtag? region = match?.namedGroup('region');
     final variants = match
         ?.namedGroup('variants')
-        ?.split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false))
+        ?.split(RegExp(
+          (separatorPattern ?? kBcp47Separator).toString(),
+          caseSensitive: false,
+        ))
         .skip(1);
 
     if (language == null) {
@@ -337,7 +349,10 @@ class Bcp47Parser {
 
     final Bcp47Subtags otherSubtags = match
         .namedGroup('subtags')!
-        .split(RegExp((separatorPattern ?? kBcp47Separator).toString(), caseSensitive: false))
+        .split(RegExp(
+          (separatorPattern ?? kBcp47Separator).toString(),
+          caseSensitive: false,
+        ))
         .skip(1);
 
     return Bcp47BasicLanguageRange(
