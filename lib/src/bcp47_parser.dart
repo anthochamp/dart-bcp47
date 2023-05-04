@@ -55,6 +55,7 @@ class Bcp47Parser {
       RegExp.escape(Bcp47PrivateUseTag.kSingleton);
   static const kPrivateUseSubtagMinLength = 1;
   static const Pattern kLangTagLanguagePattern = r'[a-z]{2,8}';
+  static const int kLangTagPrimaryTagMinLength = 2;
   static const Pattern kLangTagPrimaryTagPattern23 =
       r'[a-z]{2,3}'; // pattern with extlangs
   static const Pattern kLangTagPrimaryTagPattern48 =
@@ -220,6 +221,52 @@ class Bcp47Parser {
     return Bcp47GrandfatheredTag(subtags: subtags);
   }
 
+  static bool parseSeparator(
+    StringPointer pointer, {
+    Pattern? separatorPattern,
+  }) {
+    final match = RegExp(
+      '^(?:${separatorPattern ?? kBcp47SeparatorPattern})',
+      caseSensitive: false,
+    ).firstMatch(pointer.value);
+
+    if (match == null) {
+      return false;
+    }
+
+    pointer += match.end;
+
+    return true;
+  }
+
+  static Iterable<Bcp47Extension> parseExtensions(
+    StringPointer pointer, {
+    Pattern? separatorPattern,
+  }) {
+    final extensions = <Bcp47Extension>[];
+
+    int lastOffset = pointer.offset;
+
+    do {
+      final extension = parseExtension(
+        pointer,
+        singletonCharPattern: kExtensionSingletonPattern,
+        separatorPattern: separatorPattern,
+      );
+
+      if (extension == null) {
+        pointer.offset = lastOffset;
+        break;
+      }
+
+      lastOffset = pointer.offset;
+
+      extensions.add(extension);
+    } while (parseSeparator(pointer, separatorPattern: separatorPattern));
+
+    return extensions;
+  }
+
   static Bcp47LangTag? parseLangTag(
     StringPointer pointer, {
     Pattern? separatorPattern,
@@ -259,47 +306,26 @@ class Bcp47Parser {
       return null;
     }
 
-    final extensions = <Bcp47Extension>[];
+    Iterable<Bcp47Extension>? extensions;
     Bcp47PrivateUseTag? privateUse;
 
     if (withExtensionsAndPrivateUse) {
-      bool matchSeparator() {
-        final match = RegExp(
-          '^(?:${separatorPattern ?? kBcp47SeparatorPattern})',
-          caseSensitive: false,
-        ).firstMatch(pointer.value);
-
-        if (match == null) {
-          return false;
-        }
-
-        pointer += match.end;
-
-        return true;
-      }
-
       int lastOffset = pointer.offset;
 
-      // ignore: prefer-moving-to-variable
-      while (matchSeparator()) {
-        final extension = parseExtension(
+      if (parseSeparator(pointer, separatorPattern: separatorPattern)) {
+        extensions = parseExtensions(
           pointer,
-          singletonCharPattern: kExtensionSingletonPattern,
           separatorPattern: separatorPattern,
         );
 
-        if (extension == null) {
+        if (extensions.isEmpty) {
           pointer.offset = lastOffset;
-          break;
         }
-
-        lastOffset = pointer.offset;
-
-        extensions.add(extension);
       }
 
-      // ignore: prefer-moving-to-variable
-      if (matchSeparator()) {
+      lastOffset = pointer.offset;
+
+      if (parseSeparator(pointer, separatorPattern: separatorPattern)) {
         privateUse = parsePrivateUseTag(
           pointer,
           separatorPattern: separatorPattern,
@@ -313,11 +339,11 @@ class Bcp47Parser {
 
     return Bcp47LangTag(
       language: language,
-      extlangs: extlangs ?? [],
+      extlangs: extlangs ?? const [],
       script: script,
       region: region,
-      variants: variants ?? [],
-      extensions: extensions,
+      variants: variants ?? const [],
+      extensions: extensions ?? const [],
       privateUse: privateUse,
     );
   }
