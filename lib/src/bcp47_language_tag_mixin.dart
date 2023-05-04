@@ -4,8 +4,6 @@
 
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
-import 'package:ac_dart_essentials/ac_dart_essentials.dart';
-
 import 'bcp47_formatter.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_typedefs.dart';
@@ -15,13 +13,12 @@ abstract class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   Bcp47Subtags get subtags => [primarySubtag, ...otherSubtags];
 
   @override
-  int get hashCode => Object.hashAll(subtags.map((e) => e.toLowerCase()));
+  int get hashCode => subtags.map((e) => e.toLowerCase()).hashCode;
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            subtags.toList().equalsI(other.subtags));
+        (runtimeType == other.runtimeType && hashCode == other.hashCode);
   }
 
   @override
