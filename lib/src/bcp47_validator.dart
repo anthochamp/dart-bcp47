@@ -11,7 +11,7 @@ import 'bcp47_typedefs.dart';
 
 class Bcp47Validator {
   static void validateBasicLanguageRangeSubtagsFormat({
-    required Bcp47Subtags subtags,
+    Bcp47Subtags subtags = const [],
   }) {
     if (subtags.length == 1 && subtags.first == '*') {
       return;
@@ -31,7 +31,7 @@ class Bcp47Validator {
   }
 
   static void validateExtendedLanguageRangeValuesFormat({
-    required Iterable<String> values,
+    Iterable<String> values = const [],
   }) {
     if (values.first != '*' &&
         !Bcp47Parser.kPrimarySubtagPattern.entireMatchI(values.first)) {
@@ -51,11 +51,11 @@ class Bcp47Validator {
 
   static void validateLangTagSubtagsFormat({
     required Bcp47Subtag language,
-    required Bcp47Subtags extlangs,
-    required Bcp47Subtag? script,
-    required Bcp47Subtag? region,
-    required Bcp47Subtags variants,
-    required Iterable<Bcp47Extension> extensions,
+    Bcp47Subtags extlangs = const [],
+    Bcp47Subtag? script,
+    Bcp47Subtag? region,
+    Bcp47Subtags variants = const [],
+    Iterable<Bcp47Extension> extensions = const [],
   }) {
     if (!Bcp47Parser.kLangTagLanguagePattern.entireMatchI(language)) {
       throw ArgumentError.value(language, 'language');
@@ -118,7 +118,7 @@ class Bcp47Validator {
     Pattern singletonPattern,
     int otherSubtagMinLength, {
     required Bcp47Singleton singleton,
-    required Bcp47Subtags otherSubtags,
+    Bcp47Subtags otherSubtags = const [],
   }) {
     if (!singletonPattern.entireMatchI(singleton)) {
       throw ArgumentError.value(singleton);
