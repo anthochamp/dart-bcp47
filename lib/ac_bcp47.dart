@@ -9,6 +9,7 @@ export 'src/bcp47_extended_language_range.dart';
 export 'src/bcp47_extension.dart';
 export 'src/bcp47_formatter.dart';
 export 'src/bcp47_grandfathered_tag.dart';
+export 'src/bcp47_iana_data.dart';
 export 'src/bcp47_lang_tag.dart';
 export 'src/bcp47_language_range.dart';
 export 'src/bcp47_language_tag_mixin.dart';
