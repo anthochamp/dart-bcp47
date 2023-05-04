@@ -115,7 +115,7 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
           ? values[Bcp47LangTagSubtag.language]
           : language,
       extlangs: values.containsKey(Bcp47LangTagSubtag.extlang)
-          ? values[Bcp47LangTagSubtag.extlang]
+          ? values[Bcp47LangTagSubtag.extlang] ?? const []
           : extlangs,
       script: values.containsKey(Bcp47LangTagSubtag.script)
           ? values[Bcp47LangTagSubtag.script]
@@ -124,10 +124,10 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
           ? values[Bcp47LangTagSubtag.region]
           : region,
       variants: values.containsKey(Bcp47LangTagSubtag.variant)
-          ? values[Bcp47LangTagSubtag.variant]
+          ? values[Bcp47LangTagSubtag.variant] ?? const []
           : variants,
       extensions: values.containsKey(Bcp47LangTagSubtag.extension)
-          ? values[Bcp47LangTagSubtag.extension]
+          ? values[Bcp47LangTagSubtag.extension] ?? const []
           : extensions,
       privateUse: values.containsKey(Bcp47LangTagSubtag.privateUse)
           ? values[Bcp47LangTagSubtag.privateUse]
