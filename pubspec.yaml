@@ -4,7 +4,7 @@ version: 0.2.0
 repository: https://github.com/anthochamp/dart-bcp47
 
 environment:
-  sdk: '>=2.19.5 <3.0.0'
+  sdk: '>=2.19.5 <4.0.0'
 
 dependencies:
   collection: ^1.17.0
