@@ -16,7 +16,7 @@ abstract class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   int get hashCode => subtags.map((e) => e.toLowerCase()).hashCode;
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType && hashCode == other.hashCode);
   }
