@@ -1,0 +1,16 @@
+name: Deploy Dart library
+
+on:
+  push:
+    tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+
+jobs:
+  lint:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@9c751de1366fde227d30db685f40acc325c5f740
+  test:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@9c751de1366fde227d30db685f40acc325c5f740
+  publish:
+    needs: [lint, test]
+    permissions:
+      id-token: write
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@9c751de1366fde227d30db685f40acc325c5f740

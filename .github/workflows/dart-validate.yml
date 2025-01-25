@@ -4,6 +4,6 @@ on: [ push, pull_request ]
 
 jobs:
   lint:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@de26f3dedcbd779fb2d83542a33f888ddeb108ee
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@9c751de1366fde227d30db685f40acc325c5f740
   test:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@de26f3dedcbd779fb2d83542a33f888ddeb108ee
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@9c751de1366fde227d30db685f40acc325c5f740
