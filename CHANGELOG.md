@@ -1,3 +1,7 @@
+## 0.2.3
+
+- Upgrade ac_lints package to 0.4.0
+
 ## 0.2.2
 
 - Upgrade ac_lints package to 0.3.0
