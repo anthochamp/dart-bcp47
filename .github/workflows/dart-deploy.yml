@@ -1,0 +1,13 @@
+name: Deploy Dart project
+
+on:
+  push:
+    tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+
+jobs:
+  lint:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@50edd7970acd056b0aa97a67c7632b2c13e7fd71
+  test:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@50edd7970acd056b0aa97a67c7632b2c13e7fd71
+  publish:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-publish.yml@50edd7970acd056b0aa97a67c7632b2c13e7fd71
