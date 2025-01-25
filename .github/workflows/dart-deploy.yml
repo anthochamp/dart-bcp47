@@ -11,4 +11,6 @@ jobs:
     uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@50edd7970acd056b0aa97a67c7632b2c13e7fd71
   publish:
     needs: [lint, test]
+    permissions:
+      id-token: write
     uses: anthochamp/dev-toolbox/.github/workflows/dart-publish.yml@50edd7970acd056b0aa97a67c7632b2c13e7fd71
