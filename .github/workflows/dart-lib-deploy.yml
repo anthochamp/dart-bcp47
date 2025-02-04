@@ -6,11 +6,11 @@ on:
 
 jobs:
   lint:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@9c751de1366fde227d30db685f40acc325c5f740
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lint.yml@4dfcd8d140fb8ea77fd980769843ce4971020bb1
   test:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@9c751de1366fde227d30db685f40acc325c5f740
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-test.yml@4dfcd8d140fb8ea77fd980769843ce4971020bb1
   publish:
     needs: [lint, test]
     permissions:
       id-token: write
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@9c751de1366fde227d30db685f40acc325c5f740
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@4dfcd8d140fb8ea77fd980769843ce4971020bb1
