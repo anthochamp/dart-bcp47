@@ -7,5 +7,5 @@ on:
   pull_request:
 
 jobs:
-  validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@cc1e1eba16412e3c93cdebcdb902722115d0c695
+  dart-validate:
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@cf8d20746895d6f353cbd936ff46f78086a60faf
