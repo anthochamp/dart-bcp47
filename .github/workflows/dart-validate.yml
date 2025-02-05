@@ -1,7 +1,10 @@
 name: Validate Dart project
 
-on: [ push, pull_request ]
+on: 
+  push:
+    tags-ignore: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+  pull_request:
 
 jobs:
   validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@bffd9091362f1526b5848ca9bb24b6be6707a891
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@cc1e1eba16412e3c93cdebcdb902722115d0c695
