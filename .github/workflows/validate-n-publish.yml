@@ -1,14 +1,14 @@
-name: Deploy Dart library
+name: Validate & Publish
 
 on:
   push:
     tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
 
 jobs:
-  dart-validate:
+  validate:
     uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@5b774b1055aa5bccf0edb54a55ad974893a01a47
-  dart-publish:
-    needs: dart-validate
+  publish:
+    needs: validate
     permissions:
       id-token: write
     uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@5b774b1055aa5bccf0edb54a55ad974893a01a47
