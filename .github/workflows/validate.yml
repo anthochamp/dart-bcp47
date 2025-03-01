@@ -8,4 +8,4 @@ on:
 
 jobs:
   validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@e35442a89ca4052b3bce6cce81570def8a6db13c
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@b8444c9edc291d09624ced7d94184d2a29b024ff
