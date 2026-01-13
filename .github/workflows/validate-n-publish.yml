@@ -6,9 +6,9 @@ on:
 
 jobs:
   validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@f500e7cdca8a754d7f78b7706fba2278ffc42f1b
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@8cb92c1cdb4c785d9cacbae1c723df13ff8f628b
   publish:
     needs: validate
     permissions:
       id-token: write
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@f500e7cdca8a754d7f78b7706fba2278ffc42f1b
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@8cb92c1cdb4c785d9cacbae1c723df13ff8f628b
