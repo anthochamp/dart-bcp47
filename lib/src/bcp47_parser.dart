@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -358,14 +358,19 @@ class Bcp47Parser {
       return Bcp47BasicLanguageRange();
     }
 
-    final pattern = composeLanguageSubtagsPattern(
-      primarySubtagPattern: kPrimarySubtagPattern,
-      subtagMinLength: kSubtagMinLength,
-      separatorPattern: separatorPattern ?? kBcp47SeparatorPattern,
-    );
+    // Basic language ranges allow a single primary subtag (e.g. "de", "en"),
+    // so the additional-subtag group uses * (zero or more) instead of +.
+    final sep = separatorPattern ?? kBcp47SeparatorPattern;
+    final subtagSuffixPattern =
+        composeSubtagSafeSuffixPattern(separatorPattern: sep);
+    final primaryCapture =
+        '$kPrimarySubtagPattern$subtagSuffixPattern'.namedCapture('primary');
+    final subtagsCapture =
+        '(?:$sep${composeSubtagPattern(minLength: kSubtagMinLength)}$subtagSuffixPattern)*'
+            .namedCapture('subtags');
 
     final match = RegExp(
-      '^$pattern',
+      '^$primaryCapture$subtagsCapture',
       caseSensitive: false,
     ).firstMatch(pointer.value);
 
@@ -377,10 +382,9 @@ class Bcp47Parser {
 
     final Bcp47Subtag primarySubtag = match.namedGroup('primary')!;
 
-    final Bcp47Subtags otherSubtags = match
-        .namedGroup('subtags')!
+    final Bcp47Subtags otherSubtags = (match.namedGroup('subtags') ?? '')
         .split(RegExp(
-          (separatorPattern ?? kBcp47Separator).toString(),
+          sep.toString(),
           caseSensitive: false,
         ))
         .skip(1);
