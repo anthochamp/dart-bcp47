@@ -14,24 +14,71 @@ import 'bcp47_private_use_tag.dart';
 import 'bcp47_typedefs.dart';
 import 'bcp47_validator.dart';
 
+/// Identifies a field within a [Bcp47LangTag].
+///
+/// Used as a key in [Bcp47LangTag.get] and [Bcp47LangTag.replace].
 enum Bcp47LangTagSubtag {
+  /// Primary language subtag (e.g. `en`, `zh`).
   language,
+
+  /// Extended language subtags (up to 3, e.g. `cmn` in `zh-cmn-Hans-CN`).
   extlang,
+
+  /// Script subtag (e.g. `Latn`, `Hans`).
   script,
+
+  /// Region subtag — ISO 3166-1 alpha-2 or UN M.49 (e.g. `US`, `419`).
   region,
+
+  /// Variant subtags (e.g. `rozaj`, `1901`).
   variant,
+
+  /// Extension subtags (singleton + subtags, e.g. `u-ca-gregory`).
   extension,
+
+  /// Private-use subtag sequence (e.g. `x-phonebk`).
   privateUse,
 }
 
+/// A BCP-47 `langtag` as defined in RFC 5646 §2.1.
+///
+/// Represents the most common tag form: language (+ optional extlang, script,
+/// region, variants, extensions, and private-use suffix).
+///
+/// All fields are validated in the constructor; only well-formed subtag values
+/// are accepted (throws [ArgumentError] otherwise).
+///
+/// Example:
+/// ```dart
+/// final tag = Bcp47LangTag.parse('zh-cmn-Hans-CN');
+/// print(tag.language);          // zh
+/// print(tag.extlangs);          // [cmn]
+/// print(tag.script);            // Hans
+/// print(tag.region);            // CN
+/// print(tag.format(caseNormalized: true)); // zh-cmn-Hans-CN
+/// ```
 @immutable
 class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
+  /// Primary language subtag (2–8 alpha characters, e.g. `'en'`, `'zh'`).
   final Bcp47Subtag language;
+
+  /// Extended language subtags (0–3 items, each 3 alpha characters).
   final Bcp47Subtags extlangs;
+
+  /// Script subtag (4 alpha characters, e.g. `'Latn'`, `'Hans'`), or `null`.
   final Bcp47Subtag? script;
+
+  /// Region subtag (ISO 3166-1 alpha-2 or UN M.49 numeric, e.g. `'US'`,
+  /// `'419'`), or `null`.
   final Bcp47Subtag? region;
+
+  /// Variant subtags (each 5–8 alphanumeric or starting with a digit).
   final Bcp47Subtags variants;
+
+  /// Extension sequences (singleton ≠ `x` followed by 2+ char subtags).
   final Iterable<Bcp47Extension> extensions;
+
+  /// Private-use suffix (`x-...`), or `null`.
   final Bcp47PrivateUseTag? privateUse;
 
   Bcp47LangTag({
@@ -53,6 +100,12 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     );
   }
 
+  /// Parses [string] as a `langtag`.
+  ///
+  /// Throws [ArgumentError] if [string] is not a well-formed `langtag`
+  /// (use [Bcp47LanguageTag.parse] if the tag type is unknown).
+  ///
+  /// [separatorPattern] overrides the default `-` separator.
   factory Bcp47LangTag.parse(
     String string, {
     Pattern? separatorPattern,
@@ -90,6 +143,14 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
         ],
       ];
 
+  /// Returns the value of the named [subtag] field.
+  ///
+  /// The return type depends on the subtag:
+  /// - `language` → [Bcp47Subtag]
+  /// - `extlang`, `variant` → [Bcp47Subtags]
+  /// - `script`, `region` → `Bcp47Subtag?`
+  /// - `extension` → `Iterable<Bcp47Extension>`
+  /// - `privateUse` → `Bcp47PrivateUseTag?`
   dynamic get(Bcp47LangTagSubtag subtag) {
     switch (subtag) {
       case Bcp47LangTagSubtag.language:
@@ -109,6 +170,19 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     }
   }
 
+  /// Returns a copy of this tag with the given [values] substituted.
+  ///
+  /// Only the entries present in [values] are replaced; all other fields
+  /// remain unchanged. Pass `null` for nullable fields (`script`, `region`,
+  /// `privateUse`) to clear them.
+  ///
+  /// Example:
+  /// ```dart
+  /// final usTag = Bcp47LangTag.parse('en-GB').replace({
+  ///   Bcp47LangTagSubtag.region: 'US',
+  /// });
+  /// print(usTag); // en-US
+  /// ```
   Bcp47LangTag replace(Map<Bcp47LangTagSubtag, dynamic> values) {
     return Bcp47LangTag(
       language: values.containsKey(Bcp47LangTagSubtag.language)

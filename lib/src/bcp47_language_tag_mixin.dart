@@ -8,6 +8,11 @@ import 'bcp47_formatter.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_typedefs.dart';
 
+/// Shared implementation for all [Bcp47LanguageTag] concrete types.
+///
+/// Provides [subtags], [hashCode], [==], [format], and [toString] in terms
+/// of the abstract [primarySubtag] / [otherSubtags] pair. Concrete classes
+/// need only implement those two getters.
 abstract class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   @override
   Bcp47Subtags get subtags => [primarySubtag, ...otherSubtags];

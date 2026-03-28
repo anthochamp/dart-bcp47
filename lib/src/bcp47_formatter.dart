@@ -9,11 +9,21 @@ import 'bcp47_extension.dart';
 import 'bcp47_private_use_tag.dart';
 import 'bcp47_typedefs.dart';
 
+/// Internal formatter applying RFC 5646 §2.1.1 case normalization and
+/// separator rules.
+///
+/// All methods are static; this class is not intended to be instantiated.
 // normalization rules from :
 // https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1.1
 class Bcp47Formatter {
   // this is the default language tag formatter, it shouldn't
   // be used if there's a specific formatter (ie. LangTag)
+
+  /// Formats [subtags] joined by [separator] (default [kBcp47Separator]).
+  ///
+  /// When [caseNormalized] is `true`, all subtags are lowercased. Only use
+  /// this method for tag types without explicit casing rules (i.e. not
+  /// [Bcp47LangTag]); use [formatLangTagSubtags] for that.
   static String formatLanguageTagSubtags({
     required Bcp47Subtags subtags,
     bool? caseNormalized,
@@ -25,6 +35,14 @@ class Bcp47Formatter {
         .join(separator ?? kBcp47Separator);
   }
 
+  /// Formats a `langtag` from its constituent subtags, applying RFC 5646
+  /// §2.1.1 case normalization when [caseNormalized] is `true`:
+  ///
+  /// - `language` / `extlangs` / `variants` → lowercase
+  /// - `script` → Title Case
+  /// - `region` → UPPERCASE
+  ///
+  /// Subtags are joined by [separator] (default [kBcp47Separator]).
   static String formatLangTagSubtags({
     Bcp47Subtag? language,
     Bcp47Subtags? extlangs,

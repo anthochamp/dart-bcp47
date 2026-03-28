@@ -14,8 +14,40 @@ import 'bcp47_lang_tag.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_typedefs.dart';
 
+/// Implements the RFC 5646 §4.5 canonicalization algorithm for BCP-47
+/// language tags.
+///
+/// All methods are static; this class is not intended to be instantiated.
+///
+/// The main entry point is [canonicalize]. Additional helpers:
+/// - [suppressScript] — removes a script subtag when it equals the language's
+///   IANA suppress-script value.
+/// - [normalizeCasing] — applies RFC 5646 §2.1.1 case rules.
+/// - [reorderVariants] — reorders variant subtags per RFC 5646 §4.1 rule 6.
 // https://www.rfc-editor.org/rfc/rfc5646.html#section-4.5
 class Bcp47Canonicalizer {
+  /// Canonicalizes [languageTag] according to RFC 5646 §4.5.
+  ///
+  /// Steps applied in order:
+  /// 1. Extension singletons are sorted lexicographically.
+  /// 2. Grandfathered / redundant tags are replaced by their IANA
+  ///    `Preferred-Value`.
+  /// 3. Language, extlang, region, and variant subtags are replaced by their
+  ///    IANA `Preferred-Value` (deprecated tags → preferred replacements).
+  ///
+  /// Optional steps (disabled by default):
+  /// - [variantsReordered]: reorder variant subtags per RFC 5646 §4.1 rule 6.
+  /// - [caseNormalized]: apply RFC 5646 §2.1.1 case rules after all other
+  ///   steps (language→lower, script→Title, region→UPPER).
+  /// - [extlangForm]: if the primary language subtag is also a known extlang,
+  ///   prepend its IANA prefix and move the language to the extlang position.
+  ///
+  /// Example:
+  /// ```dart
+  /// final tag = Bcp47LanguageTag.parse('zh-cmn');
+  /// final canonical = Bcp47Canonicalizer.canonicalize(tag);
+  /// print(canonical); // cmn  (extlang preferred value replaces language)
+  /// ```
   static Bcp47LanguageTag canonicalize(
     Bcp47LanguageTag languageTag, {
     bool variantsReordered = false,
@@ -190,6 +222,17 @@ class Bcp47Canonicalizer {
     return canonicalized;
   }
 
+  /// Removes [langTag]'s script subtag if it equals the IANA
+  /// `Suppress-Script` value for that language.
+  ///
+  /// Returns [langTag] unchanged if no script is set or if the script is not
+  /// the suppress-script for the given language.
+  ///
+  /// Example:
+  /// ```dart
+  /// final tag = Bcp47LangTag.parse('en-Latn');
+  /// print(Bcp47Canonicalizer.suppressScript(tag)); // en  (Latn is suppressed for 'en')
+  /// ```
   static Bcp47LangTag suppressScript(Bcp47LangTag langTag) {
     if (langTag.script == null) {
       return langTag;
@@ -215,10 +258,19 @@ class Bcp47Canonicalizer {
     return langTag;
   }
 
+  /// Returns [languageTag] re-parsed after applying RFC 5646 §2.1.1 casing.
+  ///
+  /// Equivalent to `Bcp47LanguageTag.parse(languageTag.format(caseNormalized: true))`.
   static Bcp47LanguageTag normalizeCasing(Bcp47LanguageTag languageTag) {
     return Bcp47LanguageTag.parse(languageTag.format(caseNormalized: true));
   }
 
+  /// Reorders variant subtags in [langTag] according to RFC 5646 §4.1 rule 6.
+  ///
+  /// General-purpose variants (no `Prefix` in IANA registry) are placed last.
+  /// Prefixed variants are ordered by dependency (more specific prefixes first).
+  /// Ties are broken alphabetically. Returns [langTag] unchanged when fewer
+  /// than two variants are present.
   static Bcp47LangTag reorderVariants(Bcp47LangTag langTag) {
     // From 6) of https://www.rfc-editor.org/rfc/rfc5646.html#section-4.1
     //

@@ -13,7 +13,20 @@ import 'bcp47_parser.dart';
 import 'bcp47_typedefs.dart';
 import 'bcp47_validator.dart';
 
-/// A Basic Language Range as described in https://www.rfc-editor.org/rfc/rfc4647#section-2.1
+/// A Basic Language Range as defined in RFC 4647 §2.1.
+///
+/// A basic range is a BCP-47 tag or the wildcard `*`. The wildcard matches
+/// every language tag. Other ranges match tags whose formatted string begins
+/// with the range string (prefix match, case-insensitive).
+///
+/// Examples:
+/// ```dart
+/// Bcp47BasicLanguageRange.parse('de').match(Bcp47LanguageTag.parse('de-DE')); // true
+/// Bcp47BasicLanguageRange.parse('de').match(Bcp47LanguageTag.parse('en'));    // false
+/// Bcp47BasicLanguageRange().match(Bcp47LanguageTag.parse('anything'));        // true (*)
+/// ```
+///
+/// See also [Bcp47ExtendedLanguageRange] for wildcard-subtag matching.
 @immutable
 class Bcp47BasicLanguageRange
     with Bcp47LanguageTagMixin
@@ -27,6 +40,10 @@ class Bcp47BasicLanguageRange
     Bcp47Validator.validateBasicLanguageRangeSubtagsFormat(subtags: subtags);
   }
 
+  /// Parses [string] as a basic language range (`*` or a BCP-47-like tag).
+  ///
+  /// Throws [ArgumentError] if [string] is not a valid basic language range.
+  /// [separatorPattern] overrides the default `-` separator.
   factory Bcp47BasicLanguageRange.parse(
     String string, {
     Pattern? separatorPattern,
@@ -51,7 +68,12 @@ class Bcp47BasicLanguageRange
   @override
   Bcp47Subtags get otherSubtags => subtags.skip(1);
 
-  /// Basic Filtering as described in https://www.rfc-editor.org/rfc/rfc4647#section-3.3.1
+  /// Returns `true` if [languageTag] matches this range using Basic Filtering
+  /// (RFC 4647 §3.3.1).
+  ///
+  /// The wildcard `*` matches every tag. Otherwise, [languageTag] must start
+  /// with this range's formatted string (prefix match, case-insensitive,
+  /// followed by `-` or end of string).
   @override
   bool match(Bcp47LanguageTag languageTag) {
     if (subtags.length == 1 && subtags.first == '*') {

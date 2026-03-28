@@ -8,10 +8,20 @@ import 'package:meta/meta.dart';
 import 'bcp47_parser.dart';
 import 'bcp47_singleton_tag.dart';
 
-/// BCP-47 Extension (from RFC 5646)
+/// A BCP-47 extension sequence as defined in RFC 5646 §2.2.6.
 ///
-/// An extension is a Singleton tag (a RFC 3066 Language-Tag with a
-/// Primary-subtag of length 1) with a singleton that is *NOT* 'x'.
+/// An extension consists of a single-character singleton (any alphanumeric
+/// except `x`) followed by two or more subtags of at least 2 characters.
+/// Multiple extensions may appear in a [Bcp47LangTag], each with a distinct
+/// singleton, ordered lexicographically after canonicalization.
+///
+/// Example: `u-ca-gregory` (Unicode locale extension for Gregorian calendar)
+///
+/// ```dart
+/// final ext = Bcp47Extension.parse('u-ca-gregory');
+/// print(ext.singleton);    // u
+/// print(ext.otherSubtags); // [ca, gregory]
+/// ```
 
 @immutable
 class Bcp47Extension extends Bcp47SingletonTag {
@@ -23,6 +33,10 @@ class Bcp47Extension extends Bcp47SingletonTag {
           Bcp47Parser.kExtensionSubtagMinLength,
         );
 
+  /// Parses [string] as a standalone extension sequence.
+  ///
+  /// Throws [ArgumentError] if the string is not a valid extension.
+  /// [separatorPattern] overrides the default `-` separator.
   factory Bcp47Extension.parse(
     String string, {
     Pattern? separatorPattern,
@@ -42,5 +56,9 @@ class Bcp47Extension extends Bcp47SingletonTag {
     return instance!;
   }
 
+  /// Returns the canonicalized form of this extension.
+  ///
+  /// Extensions do not currently require subtag reordering, so this
+  /// returns `this` unchanged. Reserved for future canonicalization rules.
   Bcp47Extension get canonicalized => this;
 }

@@ -14,8 +14,28 @@ import 'bcp47_validator.dart';
 
 // https://www.rfc-editor.org/rfc/rfc4647#section-2.2
 
+/// An Extended Language Range as defined in RFC 4647 §2.2.
+///
+/// An extended range contains subtags and wildcard (`*`) positions.
+/// The matching algorithm (RFC 4647 §3.3.2) skips unknown subtags in the
+/// tag when looking for non-wildcard range subtags.
+///
+/// Examples:
+/// ```dart
+/// // Match any Chinese tag regardless of script
+/// final range = Bcp47ExtendedLanguageRange.parse('zh-*-CN');
+/// range.match(Bcp47LanguageTag.parse('zh-Hans-CN')); // true
+/// range.match(Bcp47LanguageTag.parse('zh-Hant-CN')); // true
+/// range.match(Bcp47LanguageTag.parse('zh-CN'));       // true (wildcard skips)
+/// range.match(Bcp47LanguageTag.parse('en-CN'));       // false
+/// ```
+///
+/// Convert to a [Bcp47BasicLanguageRange] via [toBasicLanguageRange] when
+/// only prefix matching is needed.
 @immutable
 class Bcp47ExtendedLanguageRange implements Bcp47LanguageRange {
+  /// The ordered list of subtag values and wildcards (`*`) making up this
+  /// range.
   final Iterable<String> values;
 
   Bcp47ExtendedLanguageRange({
@@ -24,6 +44,10 @@ class Bcp47ExtendedLanguageRange implements Bcp47LanguageRange {
     Bcp47Validator.validateExtendedLanguageRangeValuesFormat(values: values);
   }
 
+  /// Parses [string] as an extended language range.
+  ///
+  /// Subtags are split on [separatorPattern] (default `-`). Each subtag
+  /// must be either `'*'` or a valid BCP-47 subtag.
   factory Bcp47ExtendedLanguageRange.parse(
     String string, {
     Pattern? separatorPattern,
@@ -100,7 +124,10 @@ class Bcp47ExtendedLanguageRange implements Bcp47LanguageRange {
   String format({String? separator}) =>
       values.join(separator ?? kBcp47Separator);
 
-  // https://www.rfc-editor.org/rfc/rfc4647#section-3.2
+  /// Converts this extended range to a [Bcp47BasicLanguageRange] by
+  /// dropping all wildcard (`*`) subtags (RFC 4647 §3.2).
+  ///
+  /// If the first value is `*`, returns the catch-all basic range.
   Bcp47BasicLanguageRange toBasicLanguageRange() {
     if (values.first == '*') {
       return Bcp47BasicLanguageRange();

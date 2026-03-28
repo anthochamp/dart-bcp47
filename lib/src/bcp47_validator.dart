@@ -9,7 +9,16 @@ import 'bcp47_parser.dart';
 import 'bcp47_singleton_tag.dart';
 import 'bcp47_typedefs.dart';
 
+/// Internal validation helpers used by constructors across the public API.
+///
+/// All methods are static and throw [ArgumentError] on invalid input.
+/// This class is not intended to be instantiated directly.
 class Bcp47Validator {
+  /// Validates that [subtags] form a well-formed basic language range.
+  ///
+  /// Accepts `['*']` (wildcard) or a list where the first element matches the
+  /// RFC 3066 primary-subtag pattern and subsequent elements match the general
+  /// subtag pattern. Throws [ArgumentError] otherwise.
   static void validateBasicLanguageRangeSubtagsFormat({
     Bcp47Subtags subtags = const [],
   }) {
@@ -30,6 +39,10 @@ class Bcp47Validator {
     }
   }
 
+  /// Validates that [values] form a well-formed extended language range.
+  ///
+  /// The first value must be a valid primary subtag or `'*'`. Subsequent
+  /// values must be valid subtags or `'*'`. Throws [ArgumentError] otherwise.
   static void validateExtendedLanguageRangeValuesFormat({
     Iterable<String> values = const [],
   }) {
@@ -49,6 +62,18 @@ class Bcp47Validator {
     }
   }
 
+  /// Validates the format of `langtag` constituent subtags.
+  ///
+  /// Checks:
+  /// - `language`: 2–8 alpha characters.
+  /// - `extlangs`: at most 3 elements, each exactly 3 alpha characters.
+  /// - `script`: exactly 4 alpha characters (if present).
+  /// - `region`: 2 alpha or 3 digit characters (if present).
+  /// - `variants`: each 5–8 alphanumeric or starting with a digit + 3 chars;
+  ///   no duplicates allowed.
+  /// - `extensions`: no two extensions may share the same singleton.
+  ///
+  /// Throws [ArgumentError] on any violation.
   static void validateLangTagSubtagsFormat({
     required Bcp47Subtag language,
     Bcp47Subtags extlangs = const [],
@@ -114,6 +139,9 @@ class Bcp47Validator {
     }
   }
 
+  /// Validates that [singleton] matches [singletonPattern] and that all
+  /// [otherSubtags] are at least [otherSubtagMinLength] characters long
+  /// (and at most 8). Throws [ArgumentError] otherwise.
   static void validateSingletonTagSubtagsFormat(
     Pattern singletonPattern,
     int otherSubtagMinLength, {

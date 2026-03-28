@@ -9,16 +9,23 @@ import 'bcp47_language_tag_mixin.dart';
 import 'bcp47_typedefs.dart';
 import 'bcp47_validator.dart';
 
+/// A single-character subtag used as the primary identifier of an extension
+/// or private-use sequence (e.g. `'u'`, `'x'`).
 typedef Bcp47Singleton = Bcp47Subtag;
 
-/// BCP-47 Singleton Tag
+/// A BCP-47 tag whose primary subtag is a single alphanumeric character
+/// (a "singleton" in RFC 3066 / RFC 5646 terminology).
 ///
-/// A Singleton Tag is a RFC-3066 Language-Tag with a Primary-subtag of length 1.
+/// Subclassed by [Bcp47Extension] and [Bcp47PrivateUseTag]. Constructors
+/// delegate validation to [Bcp47Validator.validateSingletonTagSubtagsFormat].
 
 @immutable
 class Bcp47SingletonTag with Bcp47LanguageTagMixin implements Bcp47LanguageTag {
+  /// The single-character primary subtag identifying this singleton sequence.
   final Bcp47Singleton singleton;
 
+  /// The subtags that follow the [singleton], each at least [otherSubtagMinLength]
+  /// characters.
   @override
   final Bcp47Subtags otherSubtags;
 

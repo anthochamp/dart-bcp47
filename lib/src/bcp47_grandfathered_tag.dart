@@ -11,8 +11,26 @@ import 'bcp47_language_tag_mixin.dart';
 import 'bcp47_parser.dart';
 import 'bcp47_typedefs.dart';
 
-/// BCP-47 Grandfathered tag (from RFC 5646)
-
+/// A BCP-47 grandfathered tag as defined in RFC 5646 §2.2.8.
+///
+/// Grandfathered tags are pre-RFC 5646 registrations that cannot be
+/// represented in the normal `langtag` production. They come in two kinds:
+///
+/// - **Irregular** — tags with the `i-` prefix (e.g. `i-enochian`,
+///   `i-klingon`) that do not match the `langtag` grammar.
+/// - **Regular** — tags that do match the grammar but were registered as
+///   grandfathered for historical reasons (e.g. `art-lojban`, `zh-guoyu`).
+///
+/// The constructor throws [ArgumentError] if [subtags] does not match any
+/// known grandfathered tag. Use [Bcp47LanguageTag.parse] when the tag type
+/// is unknown — it will delegate here automatically.
+///
+/// Example:
+/// ```dart
+/// final tag = Bcp47LanguageTag.parse('i-enochian') as Bcp47GrandfatheredTag;
+/// print(tag.irregular); // true
+/// print(tag.toString()); // i-enochian
+/// ```
 @immutable
 class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
     implements Bcp47LanguageTag {
@@ -50,7 +68,9 @@ class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
   @override
   final Bcp47Subtags subtags;
 
-  /// Is the grandfathered tag irregular?
+  /// Whether this is an irregular grandfathered tag (e.g. `i-enochian`).
+  ///
+  /// `false` means it is a regular grandfathered tag (e.g. `art-lojban`).
   late final bool irregular;
 
   Bcp47GrandfatheredTag({
@@ -75,6 +95,10 @@ class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
     }
   }
 
+  /// Parses [string] as a grandfathered tag.
+  ///
+  /// Throws [ArgumentError] if the string is not a recognized grandfathered
+  /// tag. [separatorPattern] overrides the default `-` separator.
   factory Bcp47GrandfatheredTag.parse(
     String string, {
     Pattern? separatorPattern,
