@@ -1,14 +1,34 @@
 name: Validate & Publish
 
 on:
-  push:
-    tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Publish in dry-run mode without creating a GitHub Release"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 jobs:
   validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@680b0a2faa5afc0983322d394a4502111407e9f9
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@main
+
   publish:
     needs: validate
     permissions:
       id-token: write
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@680b0a2faa5afc0983322d394a4502111407e9f9
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@main
+    with:
+      dry-run: ${{ inputs.dry-run == 'true' }}
+
+  release:
+    needs: publish
+    if: ${{ inputs.dry-run != 'true' }}
+    permissions:
+      contents: write
+    uses: anthochamp/dev-toolbox/.github/workflows/util-create-release.yml@main
+    with:
+      tag: ${{ needs.publish.outputs.tag }}
