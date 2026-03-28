@@ -6,7 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-- Update IANA registry data.
+### Fixed
+
+- Fix `==` and `hashCode` in `Bcp47LanguageTagMixin` to use structural, case-insensitive comparison (was identity-based, causing map/set lookups to fail).
+- Fix `Bcp47BasicLanguageRange.parse` to accept single-subtag ranges (e.g. `'en'`, `'de'`).
+
+### Changed
+
+- Update IANA registry data (registry date 2025-08-25, latest record 2024-12-12).
+
+### Added
+
+- Add `Bcp47Lookup` with `basicFilter`, `extendedFilter`, and `lookup` (RFC 4647 §3.3 and §3.4).
+- Add `Bcp47LangTag.copyWith` for type-safe field replacement.
+- Add `///` doc comments to all public API members.
 
 ## [0.2.3]
 
