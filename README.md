@@ -6,11 +6,8 @@ BCP-47 related types with parsing, formatting, canonicalization and format valid
 
 The following types are implemented :
 
-- [RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646) Language-Tag (langtag,
-grandfathered, privateuse);
-- [RFC 4647](https://datatracker.ietf.org/doc/html/rfc4647) [Basic](https://datatracker.ietf.org/doc/html/rfc4647#section-2.1)
-and [Extended](https://datatracker.ietf.org/doc/html/rfc4647#section-2.2) Language
-Range.
+- [RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646) Language-Tag (langtag, grandfathered, privateuse);
+- [RFC 4647](https://datatracker.ietf.org/doc/html/rfc4647) [Basic](https://datatracker.ietf.org/doc/html/rfc4647#section-2.1) and [Extended](https://datatracker.ietf.org/doc/html/rfc4647#section-2.2) Language Range.
 
 What it implements :
 
@@ -22,8 +19,7 @@ What it implements :
 
 What it does NOT implement:
 
-- Validation of Language-Tag subtags against IANA registry data (except for
-grandfathered tags).
+- Validation of Language-Tag subtags against IANA registry data (except for grandfathered tags).
 
 ## Usage
 
