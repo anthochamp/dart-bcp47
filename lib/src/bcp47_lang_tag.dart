@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -13,6 +13,9 @@ import 'bcp47_parser.dart';
 import 'bcp47_private_use_tag.dart';
 import 'bcp47_typedefs.dart';
 import 'bcp47_validator.dart';
+
+// Sentinel used by copyWith to distinguish "not provided" from explicit null.
+const _kAbsent = Object();
 
 /// Identifies a field within a [Bcp47LangTag].
 ///
@@ -170,11 +173,48 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     }
   }
 
+  /// Returns a copy of this tag with the specified fields replaced.
+  ///
+  /// Only named arguments that are explicitly provided are substituted; all
+  /// other fields retain their current value.  For the nullable fields
+  /// [script], [region], and [privateUse], pass `null` explicitly to clear
+  /// them — omitting the argument leaves them unchanged.
+  ///
+  /// Example:
+  /// ```dart
+  /// final tag = Bcp47LangTag.parse('en-Latn-GB');
+  /// tag.copyWith(region: 'US');   // en-Latn-US
+  /// tag.copyWith(script: null);   // en-GB
+  /// ```
+  Bcp47LangTag copyWith({
+    Bcp47Subtag? language,
+    Bcp47Subtags? extlangs,
+    Object? script = _kAbsent,
+    Object? region = _kAbsent,
+    Bcp47Subtags? variants,
+    Iterable<Bcp47Extension>? extensions,
+    Object? privateUse = _kAbsent,
+  }) {
+    return Bcp47LangTag(
+      language: language ?? this.language,
+      extlangs: extlangs ?? this.extlangs,
+      script: identical(script, _kAbsent) ? this.script : script as Bcp47Subtag?,
+      region: identical(region, _kAbsent) ? this.region : region as Bcp47Subtag?,
+      variants: variants ?? this.variants,
+      extensions: extensions ?? this.extensions,
+      privateUse: identical(privateUse, _kAbsent)
+          ? this.privateUse
+          : privateUse as Bcp47PrivateUseTag?,
+    );
+  }
+
   /// Returns a copy of this tag with the given [values] substituted.
   ///
   /// Only the entries present in [values] are replaced; all other fields
   /// remain unchanged. Pass `null` for nullable fields (`script`, `region`,
   /// `privateUse`) to clear them.
+  ///
+  /// Prefer [copyWith] for type-safe field replacement.
   ///
   /// Example:
   /// ```dart
@@ -183,6 +223,7 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   /// });
   /// print(usTag); // en-US
   /// ```
+  @Deprecated('Use copyWith for type-safe field replacement.')
   Bcp47LangTag replace(Map<Bcp47LangTagSubtag, dynamic> values) {
     return Bcp47LangTag(
       language: values.containsKey(Bcp47LangTagSubtag.language)

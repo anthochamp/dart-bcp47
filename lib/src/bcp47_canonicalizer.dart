@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -63,11 +63,11 @@ class Bcp47Canonicalizer {
     // various subtags in the extension and thus MAY define an alternate
     // canonicalization scheme for the extension's subtags.
     if (canonicalized is Bcp47LangTag) {
-      canonicalized = canonicalized.replace({
-        Bcp47LangTagSubtag.extension: canonicalized.extensions
+      canonicalized = canonicalized.copyWith(
+        extensions: canonicalized.extensions
             .map((e) => e.canonicalized)
             .sorted((a, b) => a.singleton.compareToI(b.singleton)),
-      });
+      );
     }
 
     // 2. Redundant or grandfathered tags are replaced by their 'Preferred-
@@ -115,9 +115,9 @@ class Bcp47Canonicalizer {
           continue;
         }
 
-        canonicalizedLangTag = canonicalizedLangTag.replace({
-          Bcp47LangTagSubtag.language: replacement,
-        });
+        canonicalizedLangTag = canonicalizedLangTag.copyWith(
+          language: replacement,
+        );
       }
 
       // For extlangs, the original primary language subtag is also
@@ -132,11 +132,11 @@ class Bcp47Canonicalizer {
           continue;
         }
 
-        canonicalizedLangTag = canonicalizedLangTag.replace({
-          Bcp47LangTagSubtag.language: replacement,
-          Bcp47LangTagSubtag.extlang: canonicalizedLangTag.extlangs.toList()
+        canonicalizedLangTag = canonicalizedLangTag.copyWith(
+          language: replacement,
+          extlangs: canonicalizedLangTag.extlangs.toList()
             ..removeWhere((e) => e.compareToI(from) == 0),
-        });
+        );
       }
 
       for (final entry in kBcp47IanaRegionPreferredValue) {
@@ -147,9 +147,9 @@ class Bcp47Canonicalizer {
           continue;
         }
 
-        canonicalizedLangTag = canonicalizedLangTag.replace({
-          Bcp47LangTagSubtag.region: replacement,
-        });
+        canonicalizedLangTag = canonicalizedLangTag.copyWith(
+          region: replacement,
+        );
       }
 
       for (final entry in kBcp47IanaVariantPreferredValue) {
@@ -169,11 +169,11 @@ class Bcp47Canonicalizer {
           continue;
         }
 
-        canonicalizedLangTag = canonicalizedLangTag.replace({
-          Bcp47LangTagSubtag.variant: canonicalizedLangTag.variants.toList()
+        canonicalizedLangTag = canonicalizedLangTag.copyWith(
+          variants: canonicalizedLangTag.variants.toList()
             ..removeWhere((e) => e.compareToI(from) == 0)
             ..add(replacement),
-        });
+        );
       }
 
       if (variantsReordered) {
@@ -200,13 +200,13 @@ class Bcp47Canonicalizer {
 
           final prefixBasicRange = prefix.toBasicLanguageRange();
 
-          canonicalizedLangTag = canonicalizedLangTag.replace({
-            Bcp47LangTagSubtag.language: prefixBasicRange.primarySubtag,
-            Bcp47LangTagSubtag.extlang: [
+          canonicalizedLangTag = canonicalizedLangTag.copyWith(
+            language: prefixBasicRange.primarySubtag,
+            extlangs: [
               ...prefixBasicRange.otherSubtags,
               value,
             ],
-          });
+          );
         }
       }
 
@@ -250,9 +250,7 @@ class Bcp47Canonicalizer {
     }
 
     if (match) {
-      return langTag.replace({
-        Bcp47LangTagSubtag.script: null,
-      });
+      return langTag.copyWith(script: null);
     }
 
     return langTag;
@@ -330,12 +328,12 @@ class Bcp47Canonicalizer {
     final orderedVariants = <Bcp47Subtag>[];
 
     do {
-      currentLangTag = currentLangTag.replace({
-        Bcp47LangTagSubtag.variant: [
+      currentLangTag = currentLangTag.copyWith(
+        variants: [
           ...orderedVariants,
           ...orderedGeneralPurposedVariants,
         ],
-      });
+      );
 
       final matchingVariantsPrefixes =
           <Bcp47Subtag, List<Bcp47ExtendedLanguageRange>>{};
@@ -359,12 +357,12 @@ class Bcp47Canonicalizer {
 
       final variantsLangTag = <Bcp47Subtag, Bcp47LangTag>{};
       for (final variant in variantsPrefixes.keys) {
-        variantsLangTag[variant] = currentLangTag.replace({
-          Bcp47LangTagSubtag.variant: [
+        variantsLangTag[variant] = currentLangTag.copyWith(
+          variants: [
             ...currentLangTag.variants,
             variant,
           ],
-        });
+        );
       }
 
       final variantsMatchOtherVariants = <Bcp47Subtag, bool>{};
@@ -431,15 +429,15 @@ class Bcp47Canonicalizer {
 
     // finalize by adding the last orderedVariants added and
     // leftovers to the sorted general purposed variants.
-    currentLangTag = currentLangTag.replace({
-      Bcp47LangTagSubtag.variant: [
+    currentLangTag = currentLangTag.copyWith(
+      variants: [
         ...orderedVariants,
         ...[
           ...variantsPrefixes.keys,
           ...orderedGeneralPurposedVariants,
         ].sorted((a, b) => a.compareToI(b)),
       ],
-    });
+    );
 
     return currentLangTag;
   }
