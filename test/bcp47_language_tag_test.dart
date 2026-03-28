@@ -677,4 +677,120 @@ void main() {
       });
     }
   });
+
+  // ---------------------------------------------------------------------------
+  // copyWith
+  // ---------------------------------------------------------------------------
+  group('Bcp47LangTag.copyWith', () {
+    test('no arguments returns equal tag', () {
+      final tag = Bcp47LangTag.parse('zh-cmn-Hans-CN');
+      expect(tag.copyWith().toString(), equals('zh-cmn-Hans-CN'));
+    });
+
+    test('change language', () {
+      final tag = Bcp47LangTag.parse('en-US');
+      expect(tag.copyWith(language: 'fr').toString(), equals('fr-US'));
+    });
+
+    test('change region', () {
+      final tag = Bcp47LangTag.parse('en-Latn-GB');
+      expect(tag.copyWith(region: 'US').toString(), equals('en-Latn-US'));
+    });
+
+    test('change script', () {
+      final tag = Bcp47LangTag.parse('zh-Hans-CN');
+      expect(tag.copyWith(script: 'Hant').toString(), equals('zh-Hant-CN'));
+    });
+
+    test('clear script with explicit null', () {
+      final tag = Bcp47LangTag.parse('en-Latn-GB');
+      expect(tag.copyWith(script: null).toString(), equals('en-GB'));
+    });
+
+    test('clear region with explicit null', () {
+      final tag = Bcp47LangTag.parse('en-Latn-GB');
+      expect(tag.copyWith(region: null).toString(), equals('en-Latn'));
+    });
+
+    test('set extlangs', () {
+      final tag = Bcp47LangTag.parse('zh');
+      expect(
+        tag.copyWith(extlangs: const ['cmn']).toString(),
+        equals('zh-cmn'),
+      );
+    });
+
+    test('clear extlangs', () {
+      final tag = Bcp47LangTag.parse('zh-cmn-Hans-CN');
+      expect(
+        tag.copyWith(extlangs: const []).toString(),
+        equals('zh-Hans-CN'),
+      );
+    });
+
+    test('add variant', () {
+      final tag = Bcp47LangTag.parse('sl');
+      expect(
+        tag.copyWith(variants: const ['nedis']).toString(),
+        equals('sl-nedis'),
+      );
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // equality
+  // ---------------------------------------------------------------------------
+  group('equality', () {
+    test('identical tags are equal', () {
+      final a = Bcp47LanguageTag.parse('en-US');
+      final b = Bcp47LanguageTag.parse('en-US');
+      expect(a, equals(b));
+    });
+
+    test('comparison is case-insensitive', () {
+      final a = Bcp47LanguageTag.parse('en-US');
+      final b = Bcp47LanguageTag.parse('EN-us');
+      expect(a, equals(b));
+    });
+
+    test('different tags are not equal', () {
+      final a = Bcp47LanguageTag.parse('en-US');
+      final b = Bcp47LanguageTag.parse('en-GB');
+      expect(a, isNot(equals(b)));
+    });
+
+    test('tags with same string have same hashCode', () {
+      final a = Bcp47LanguageTag.parse('zh-Hans-CN');
+      final b = Bcp47LanguageTag.parse('zh-Hans-CN');
+      expect(a.hashCode, equals(b.hashCode));
+    });
+
+    test('case variants have same hashCode', () {
+      final a = Bcp47LanguageTag.parse('en-Latn-US');
+      final b = Bcp47LanguageTag.parse('EN-LATN-US');
+      expect(a.hashCode, equals(b.hashCode));
+    });
+
+    test('can be used as Map key', () {
+      final map = {Bcp47LanguageTag.parse('en-US'): 'American English'};
+      expect(map[Bcp47LanguageTag.parse('en-US')], equals('American English'));
+      expect(map[Bcp47LanguageTag.parse('EN-us')], equals('American English'));
+    });
+
+    test('can be used in Set', () {
+      final set = {
+        Bcp47LanguageTag.parse('en-US'),
+        Bcp47LanguageTag.parse('en-US'),
+        Bcp47LanguageTag.parse('EN-us'),
+      };
+      expect(set.length, equals(1));
+    });
+
+    test('different concrete types are not equal', () {
+      final langTag = Bcp47LangTag.parse('en-US');
+      final range = Bcp47BasicLanguageRange.parse('en-US');
+      // Same subtags but different runtimeType
+      expect(langTag, isNot(equals(range)));
+    });
+  });
 }
