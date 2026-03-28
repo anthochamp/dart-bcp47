@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -14,6 +14,7 @@ export 'src/bcp47_lang_tag.dart';
 export 'src/bcp47_language_range.dart';
 export 'src/bcp47_language_tag_mixin.dart';
 export 'src/bcp47_language_tag.dart';
+export 'src/bcp47_lookup.dart';
 export 'src/bcp47_parser.dart';
 export 'src/bcp47_private_use_tag.dart';
 export 'src/bcp47_singleton_tag.dart';
