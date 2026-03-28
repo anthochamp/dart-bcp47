@@ -20,6 +20,7 @@ jobs:
     needs: validate
     permissions:
       id-token: write
+      contents: read
     uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@main
     with:
       dry-run: ${{ inputs.dry-run == 'true' }}
