@@ -1,12 +1,17 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
+import 'package:collection/collection.dart';
+
 import 'bcp47_formatter.dart';
 import 'bcp47_language_tag.dart';
 import 'bcp47_typedefs.dart';
+
+// Structural, case-insensitive equality used for hashCode / ==.
+const _equality = ListEquality<String>(CaseInsensitiveEquality());
 
 /// Shared implementation for all [Bcp47LanguageTag] concrete types.
 ///
@@ -18,12 +23,16 @@ abstract class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   Bcp47Subtags get subtags => [primarySubtag, ...otherSubtags];
 
   @override
-  int get hashCode => subtags.map((e) => e.toLowerCase()).hashCode;
+  int get hashCode => _equality.hash(subtags.toList());
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (runtimeType == other.runtimeType && hashCode == other.hashCode);
+    if (identical(this, other)) return true;
+    if (runtimeType != other.runtimeType) return false;
+    return _equality.equals(
+      subtags.toList(),
+      (other as Bcp47LanguageTag).subtags.toList(),
+    );
   }
 
   @override
