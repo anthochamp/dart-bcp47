@@ -198,8 +198,10 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     return Bcp47LangTag(
       language: language ?? this.language,
       extlangs: extlangs ?? this.extlangs,
-      script: identical(script, _kAbsent) ? this.script : script as Bcp47Subtag?,
-      region: identical(region, _kAbsent) ? this.region : region as Bcp47Subtag?,
+      script:
+          identical(script, _kAbsent) ? this.script : script as Bcp47Subtag?,
+      region:
+          identical(region, _kAbsent) ? this.region : region as Bcp47Subtag?,
       variants: variants ?? this.variants,
       extensions: extensions ?? this.extensions,
       privateUse: identical(privateUse, _kAbsent)

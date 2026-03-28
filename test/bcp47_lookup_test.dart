@@ -81,7 +81,8 @@ void main() {
 
     test('without wildcards behaves like basic filtering', () {
       final ranges = [Bcp47ExtendedLanguageRange.parse('de-DE')];
-      final tags = ['de-DE', 'de-AT', 'en-US'].map(Bcp47LanguageTag.parse).toList();
+      final tags =
+          ['de-DE', 'de-AT', 'en-US'].map(Bcp47LanguageTag.parse).toList();
       expect(
         Bcp47Lookup.extendedFilter(ranges, tags).map((t) => t.toString()),
         equals(['de-DE']),
@@ -99,7 +100,8 @@ void main() {
         Bcp47ExtendedLanguageRange.parse('de'),
         Bcp47ExtendedLanguageRange.parse('fr'),
       ];
-      final tags = ['de-DE', 'fr-CA', 'en-US'].map(Bcp47LanguageTag.parse).toList();
+      final tags =
+          ['de-DE', 'fr-CA', 'en-US'].map(Bcp47LanguageTag.parse).toList();
       expect(
         Bcp47Lookup.extendedFilter(ranges, tags).map((t) => t.toString()),
         equals(['de-DE', 'fr-CA']),
