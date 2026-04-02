@@ -48,33 +48,36 @@ jobs:
             }{ print }' /tmp/gen_output.dart
           } > lib/src/bcp47_iana_data.dart
 
-      - name: Check for changes
+      - name: Format generated file
+        run: dart format lib/src/bcp47_iana_data.dart
+
+      - name: Check for meaningful changes
         id: changes
         run: |
-          if git diff --quiet lib/src/bcp47_iana_data.dart; then
+          old_date=$(git show HEAD:lib/src/bcp47_iana_data.dart \
+            | grep '// Latest record of interest added date:' \
+            | sed 's|// Latest record of interest added date: ||; s/\.$//')
+          new_date=$(grep '// Latest record of interest added date:' lib/src/bcp47_iana_data.dart \
+            | sed 's|// Latest record of interest added date: ||; s/\.$//')
+
+          if [ "$old_date" = "$new_date" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            git checkout lib/src/bcp47_iana_data.dart
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "date=$new_date" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Extract latest record date
-        if: steps.changes.outputs.changed == 'true'
-        id: registry
-        run: |
-          date=$(grep '// Latest record of interest added date:' lib/src/bcp47_iana_data.dart \
-            | sed 's|// Latest record of interest added date: ||; s/\.$//')
-          echo "date=$date" >> "$GITHUB_OUTPUT"
 
       - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         if: steps.changes.outputs.changed == 'true'
         with:
-          commit-message: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
-          title: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
+          commit-message: "chore: update IANA data (latest record ${{ steps.changes.outputs.date }})"
+          title: "chore: update IANA data (latest record ${{ steps.changes.outputs.date }})"
           body: |
             Automated update of `lib/src/bcp47_iana_data.dart` from the
             [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
 
-            **Latest record of interest added:** ${{ steps.registry.outputs.date }}
+            **Latest record of interest added:** ${{ steps.changes.outputs.date }}
           branch: chore/update-iana-data
           delete-branch: true
           labels: "dependencies"
