@@ -19,11 +19,12 @@ jobs:
   publish:
     needs: validate
     permissions:
-      id-token: write
       contents: read
     uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@main
     with:
       dry-run: ${{ inputs.dry-run == 'true' }}
+    secrets:
+      gcp-service-account-key: ${{ secrets.GCP_PUB_DEV_SA_KEY }}
 
   release:
     needs: publish
