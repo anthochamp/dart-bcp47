@@ -1,80 +1,80 @@
 name: Update IANA Data
 
 on:
-    schedule:
-        - cron: "0 6 1 * *" # 1st of every month at 06:00 UTC
-    workflow_dispatch:
+  schedule:
+    - cron: "0 6 1 * *" # 1st of every month at 06:00 UTC
+  workflow_dispatch:
 
 jobs:
-    update:
-        runs-on: ubuntu-latest
+  update:
+    runs-on: ubuntu-latest
 
-        permissions:
-            contents: write
-            pull-requests: write
+    permissions:
+      contents: write
+      pull-requests: write
 
-        steps:
-            - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-            - uses: dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c # v1
-              with:
-                  sdk: stable
+      - uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260 # v1.7.2
+        with:
+          sdk: stable
 
-            - name: Install dependencies
-              run: dart pub get
+      - name: Install dependencies
+        run: dart pub get
 
-            - name: Regenerate IANA data
-              run: |
-                  set -euo pipefail
+      - name: Regenerate IANA data
+        run: |
+          set -euo pipefail
 
-                  dart run scripts/gen_iana_data.dart > /tmp/gen_output.dart
+          dart run scripts/gen_iana_data.dart > /tmp/gen_output.dart
 
-                  # Read the copyright line from the existing file so the year range
-                  # is preserved exactly as the author maintains it.
-                  copyright=$(grep 'SPDX-FileCopyrightText' lib/src/bcp47_iana_data.dart)
+          # Read the copyright line from the existing file so the year range
+          # is preserved exactly as the author maintains it.
+          copyright=$(grep 'SPDX-FileCopyrightText' lib/src/bcp47_iana_data.dart)
 
-                  {
-                    printf '%s\n' "$copyright"
-                    printf '//\n'
-                    printf '// SPDX-License-Identifier: BSD-3-Clause\n'
-                    printf '\n'
-                    printf '// ignore_for_file: lines_longer_than_80_chars\n'
-                    printf '\n'
-                    # Insert imports just before the "// Subtags Prefix" line
-                    awk '/^\/\/ Subtags Prefix/{
-                      print "import '\''bcp47_extended_language_range.dart'\'';"
-                      print "import '\''bcp47_lang_tag.dart'\'';"
-                      print ""
-                    }{ print }' /tmp/gen_output.dart
-                  } > lib/src/bcp47_iana_data.dart
+          {
+            printf '%s\n' "$copyright"
+            printf '//\n'
+            printf '// SPDX-License-Identifier: BSD-3-Clause\n'
+            printf '\n'
+            printf '// ignore_for_file: lines_longer_than_80_chars\n'
+            printf '\n'
+            # Insert imports just before the "// Subtags Prefix" line
+            awk '/^\/\/ Subtags Prefix/{
+              print "import '\''bcp47_extended_language_range.dart'\'';"
+              print "import '\''bcp47_lang_tag.dart'\'';"
+              print ""
+            }{ print }' /tmp/gen_output.dart
+          } > lib/src/bcp47_iana_data.dart
 
-            - name: Check for changes
-              id: changes
-              run: |
-                  if git diff --quiet lib/src/bcp47_iana_data.dart; then
-                    echo "changed=false" >> "$GITHUB_OUTPUT"
-                  else
-                    echo "changed=true" >> "$GITHUB_OUTPUT"
-                  fi
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet lib/src/bcp47_iana_data.dart; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
-            - name: Extract latest record date
-              if: steps.changes.outputs.changed == 'true'
-              id: registry
-              run: |
-                  date=$(grep '// Latest record of interest added date:' lib/src/bcp47_iana_data.dart \
-                    | sed 's|// Latest record of interest added date: ||; s/\.$//')
-                  echo "date=$date" >> "$GITHUB_OUTPUT"
+      - name: Extract latest record date
+        if: steps.changes.outputs.changed == 'true'
+        id: registry
+        run: |
+          date=$(grep '// Latest record of interest added date:' lib/src/bcp47_iana_data.dart \
+            | sed 's|// Latest record of interest added date: ||; s/\.$//')
+          echo "date=$date" >> "$GITHUB_OUTPUT"
 
-            - uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
-              if: steps.changes.outputs.changed == 'true'
-              with:
-                  commit-message: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
-                  title: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
-                  body: |
-                      Automated update of `lib/src/bcp47_iana_data.dart` from the
-                      [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
+      - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          commit-message: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
+          title: "chore: update IANA data (latest record ${{ steps.registry.outputs.date }})"
+          body: |
+            Automated update of `lib/src/bcp47_iana_data.dart` from the
+            [IANA Language Subtag Registry](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry).
 
-                      **Latest record of interest added:** ${{ steps.registry.outputs.date }}
-                  branch: chore/update-iana-data
-                  delete-branch: true
-                  labels: "dependencies"
+            **Latest record of interest added:** ${{ steps.registry.outputs.date }}
+          branch: chore/update-iana-data
+          delete-branch: true
+          labels: "dependencies"
