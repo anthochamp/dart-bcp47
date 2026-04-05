@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -17,7 +17,7 @@ typedef Bcp47Singleton = Bcp47Subtag;
 /// (a "singleton" in RFC 3066 / RFC 5646 terminology).
 ///
 /// Subclassed by [Bcp47Extension] and [Bcp47PrivateUseTag]. Constructors
-/// delegate validation to [Bcp47Validator.validateSingletonTagSubtagsFormat].
+/// delegate validation to [bcp47ValidateSingletonTagSubtagsFormat].
 
 @immutable
 class Bcp47SingletonTag with Bcp47LanguageTagMixin implements Bcp47LanguageTag {
@@ -35,7 +35,7 @@ class Bcp47SingletonTag with Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     required this.singleton,
     required this.otherSubtags,
   }) {
-    Bcp47Validator.validateSingletonTagSubtagsFormat(
+    bcp47ValidateSingletonTagSubtagsFormat(
       singletonPattern,
       otherSubtagMinLength,
       singleton: singleton,

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// ignore_for_file: member-ordering
+// ignore_for_file: member-ordering — parse methods are ordered by production rule hierarchy, not by member kind
 
 import 'dart:math';
 
@@ -45,7 +45,7 @@ class Bcp47Parser {
     final subtagsPattern =
         '(?:$separatorPattern${composeSubtagPattern(minLength: subtagMinLength)}$subtagSuffixPattern)+';
 
-    return '${primarySubtagPattern_.namedCapture('primary')}${subtagsPattern.namedCapture('subtags')}';
+    return '${primarySubtagPattern_.captureGroup('primary')}${subtagsPattern.captureGroup('subtags')}';
   }
 
   static const Pattern kSingletonPattern = '[\\da-z]';
@@ -77,8 +77,8 @@ class Bcp47Parser {
         '$kLangTagPrimaryTagPattern48$subtagSuffixPattern';
 
     final pattern1 =
-        '${primaryTagPattern23.namedCapture('primary23')}${extlangsPattern.namedCapture('extlangs')}';
-    final pattern2 = primaryTagPattern48.namedCapture('primary48');
+        '${primaryTagPattern23.captureGroup('primary23')}${extlangsPattern.captureGroup('extlangs')}';
+    final pattern2 = primaryTagPattern48.captureGroup('primary48');
 
     return '(?:$pattern1|$pattern2)';
   }
@@ -96,12 +96,12 @@ class Bcp47Parser {
         composeLangTagLanguagePattern(separatorPattern: separatorPattern);
 
     final scriptPattern =
-        '(?:$separatorPattern${kLangTagScriptPattern.namedCapture('script')}$subtagSuffixPattern)?';
+        '(?:$separatorPattern${kLangTagScriptPattern.captureGroup('script')}$subtagSuffixPattern)?';
     final regionPattern =
-        '(?:$separatorPattern${kLangTagRegionPattern.namedCapture('region')}$subtagSuffixPattern)?';
+        '(?:$separatorPattern${kLangTagRegionPattern.captureGroup('region')}$subtagSuffixPattern)?';
     final variantsPattern =
         '(?:$separatorPattern$kLangTagVariantPattern$subtagSuffixPattern)*'
-            .namedCapture('variants');
+            .captureGroup('variants');
 
     return '$languagePattern$scriptPattern$regionPattern$variantsPattern';
   }
@@ -127,7 +127,7 @@ class Bcp47Parser {
       return null;
     }
 
-    pointer += match.end;
+    pointer.offset += match.end;
 
     final Bcp47Singleton singleton = match.namedGroup('primary')!;
 
@@ -137,7 +137,8 @@ class Bcp47Parser {
           (separatorPattern ?? kBcp47Separator).toString(),
           caseSensitive: false,
         ))
-        .skip(1);
+        .skip(1)
+        .toList();
 
     return Bcp47SingletonTag(
       singletonCharPattern,
@@ -205,7 +206,7 @@ class Bcp47Parser {
       return null;
     }
 
-    pointer += match.end;
+    pointer.offset += match.end;
 
     final subtags = [
       match.namedGroup('primary')!,
@@ -234,7 +235,7 @@ class Bcp47Parser {
       return false;
     }
 
-    pointer += match.end;
+    pointer.offset += match.end;
 
     return true;
   }
@@ -281,7 +282,7 @@ class Bcp47Parser {
       caseSensitive: false,
     ).firstMatch(pointer.value);
 
-    pointer += match?.end ?? 0;
+    pointer.offset += match?.end ?? 0;
 
     Bcp47Subtag? language =
         match?.namedGroup('primary23') ?? match?.namedGroup('primary48');
@@ -291,7 +292,8 @@ class Bcp47Parser {
           (separatorPattern ?? kBcp47Separator).toString(),
           caseSensitive: false,
         ))
-        .skip(1);
+        .skip(1)
+        .toList();
     Bcp47Subtag? script = match?.namedGroup('script');
     Bcp47Subtag? region = match?.namedGroup('region');
     final variants = match
@@ -300,7 +302,8 @@ class Bcp47Parser {
           (separatorPattern ?? kBcp47Separator).toString(),
           caseSensitive: false,
         ))
-        .skip(1);
+        .skip(1)
+        .toList();
 
     if (language == null) {
       return null;
@@ -353,7 +356,7 @@ class Bcp47Parser {
     Pattern? separatorPattern,
   }) {
     if (pointer.value.startsWith('*')) {
-      pointer++;
+      pointer.offset++;
 
       return Bcp47BasicLanguageRange();
     }
@@ -364,10 +367,10 @@ class Bcp47Parser {
     final subtagSuffixPattern =
         composeSubtagSafeSuffixPattern(separatorPattern: sep);
     final primaryCapture =
-        '$kPrimarySubtagPattern$subtagSuffixPattern'.namedCapture('primary');
+        '$kPrimarySubtagPattern$subtagSuffixPattern'.captureGroup('primary');
     final subtagsCapture =
         '(?:$sep${composeSubtagPattern(minLength: kSubtagMinLength)}$subtagSuffixPattern)*'
-            .namedCapture('subtags');
+            .captureGroup('subtags');
 
     final match = RegExp(
       '^$primaryCapture$subtagsCapture',
@@ -378,7 +381,7 @@ class Bcp47Parser {
       return null;
     }
 
-    pointer += match.end;
+    pointer.offset += match.end;
 
     final Bcp47Subtag primarySubtag = match.namedGroup('primary')!;
 
@@ -387,7 +390,8 @@ class Bcp47Parser {
           sep.toString(),
           caseSensitive: false,
         ))
-        .skip(1);
+        .skip(1)
+        .toList();
 
     return Bcp47BasicLanguageRange(
       subtags: [

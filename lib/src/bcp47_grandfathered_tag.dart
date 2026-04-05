@@ -1,9 +1,8 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
 import 'package:ac_dart_essentials/ac_dart_essentials.dart';
-import 'package:collection/collection.dart';
 import 'package:meta/meta.dart';
 
 import 'bcp47_language_tag.dart';
@@ -34,36 +33,36 @@ import 'bcp47_typedefs.dart';
 @immutable
 class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
     implements Bcp47LanguageTag {
-  static final kIrregularTags = [
-    'en GB oed',
-    'i ami',
-    'i bnn',
-    'i default',
-    'i enochian',
-    'i hak',
-    'i klingon',
-    'i lux',
-    'i mingo',
-    'i navajo',
-    'i pwn',
-    'i tao',
-    'i tay',
-    'i tsu',
-    'sgn BE FR',
-    'sgn BE NL',
-    'sgn CH DE',
-  ].map((e) => e.split(' '));
-  static final kRegularTags = [
-    'art lojban',
-    'cel gaulish',
-    'no bok',
-    'no nyn',
-    'zh guoyu',
-    'zh hakka',
-    'zh min',
-    'zh min nan',
-    'zh xiang',
-  ].map((e) => e.split(' '));
+  static const kIrregularTags = <List<String>>[
+    ['en', 'GB', 'oed'],
+    ['i', 'ami'],
+    ['i', 'bnn'],
+    ['i', 'default'],
+    ['i', 'enochian'],
+    ['i', 'hak'],
+    ['i', 'klingon'],
+    ['i', 'lux'],
+    ['i', 'mingo'],
+    ['i', 'navajo'],
+    ['i', 'pwn'],
+    ['i', 'tao'],
+    ['i', 'tay'],
+    ['i', 'tsu'],
+    ['sgn', 'BE', 'FR'],
+    ['sgn', 'BE', 'NL'],
+    ['sgn', 'CH', 'DE'],
+  ];
+  static const kRegularTags = <List<String>>[
+    ['art', 'lojban'],
+    ['cel', 'gaulish'],
+    ['no', 'bok'],
+    ['no', 'nyn'],
+    ['zh', 'guoyu'],
+    ['zh', 'hakka'],
+    ['zh', 'min'],
+    ['zh', 'min', 'nan'],
+    ['zh', 'xiang'],
+  ];
 
   @override
   final Bcp47Subtags subtags;
@@ -71,29 +70,21 @@ class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
   /// Whether this is an irregular grandfathered tag (e.g. `i-enochian`).
   ///
   /// `false` means it is a regular grandfathered tag (e.g. `art-lojban`).
-  late final bool irregular;
+  final bool irregular;
+
+  static bool _computeIrregular(Bcp47Subtags subtags) {
+    if (kRegularTags.any((tag) => tag.equalsI(subtags))) {
+      return false;
+    }
+    if (kIrregularTags.any((tag) => tag.equalsI(subtags))) {
+      return true;
+    }
+    throw ArgumentError.value(subtags);
+  }
 
   Bcp47GrandfatheredTag({
     required this.subtags,
-  }) {
-    final regularTag = kRegularTags.firstWhereOrNull(
-      (element) => element.equalsI(subtags.toList()),
-    );
-
-    if (regularTag == null) {
-      final irregularTag = kIrregularTags.firstWhereOrNull(
-        (element) => element.equalsI(subtags.toList()),
-      );
-
-      if (irregularTag == null) {
-        throw ArgumentError.value(subtags);
-      }
-
-      irregular = true;
-    } else {
-      irregular = false;
-    }
-  }
+  }) : irregular = _computeIrregular(subtags);
 
   /// Parses [string] as a grandfathered tag.
   ///
@@ -121,5 +112,5 @@ class Bcp47GrandfatheredTag extends Bcp47LanguageTagMixin
   Bcp47Subtag get primarySubtag => subtags.first;
 
   @override
-  Bcp47Subtags get otherSubtags => subtags.skip(1);
+  Bcp47Subtags get otherSubtags => subtags.skip(1).toList();
 }

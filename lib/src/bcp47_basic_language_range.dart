@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -37,7 +37,7 @@ class Bcp47BasicLanguageRange
   Bcp47BasicLanguageRange({
     this.subtags = const ['*'],
   }) {
-    Bcp47Validator.validateBasicLanguageRangeSubtagsFormat(subtags: subtags);
+    bcp47ValidateBasicLanguageRangeSubtagsFormat(subtags: subtags);
   }
 
   /// Parses [string] as a basic language range (`*` or a BCP-47-like tag).
@@ -66,7 +66,7 @@ class Bcp47BasicLanguageRange
   Bcp47Subtag get primarySubtag => subtags.first;
 
   @override
-  Bcp47Subtags get otherSubtags => subtags.skip(1);
+  Bcp47Subtags get otherSubtags => subtags.skip(1).toList();
 
   /// Returns `true` if [languageTag] matches this range using Basic Filtering
   /// (RFC 4647 §3.3.1).

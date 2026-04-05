@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes — mixin is applied exclusively to @immutable Bcp47LanguageTag implementations
 
 import 'package:collection/collection.dart';
 
@@ -18,7 +18,7 @@ const _equality = ListEquality<String>(CaseInsensitiveEquality());
 /// Provides [subtags], [hashCode], [==], [format], and [toString] in terms
 /// of the abstract [primarySubtag] / [otherSubtags] pair. Concrete classes
 /// need only implement those two getters.
-abstract class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
+abstract mixin class Bcp47LanguageTagMixin implements Bcp47LanguageTag {
   @override
   Bcp47Subtags get subtags => [primarySubtag, ...otherSubtags];
 

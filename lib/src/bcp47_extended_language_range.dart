@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: © 2023 - 2024 Anthony Champagne <dev@anthonychampagne.fr>
+// SPDX-FileCopyrightText: © 2023 - 2026 Anthony Champagne <dev@anthonychampagne.fr>
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
@@ -41,7 +41,7 @@ class Bcp47ExtendedLanguageRange implements Bcp47LanguageRange {
   Bcp47ExtendedLanguageRange({
     required this.values,
   }) {
-    Bcp47Validator.validateExtendedLanguageRangeValuesFormat(values: values);
+    bcp47ValidateExtendedLanguageRangeValuesFormat(values: values);
   }
 
   /// Parses [string] as an extended language range.

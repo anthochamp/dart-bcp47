@@ -2,8 +2,9 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import 'package:ac_bcp47/ac_bcp47.dart';
 import 'package:test/test.dart';
+
+import 'package:ac_bcp47/ac_bcp47.dart';
 
 void main() {
   // ---------------------------------------------------------------------------

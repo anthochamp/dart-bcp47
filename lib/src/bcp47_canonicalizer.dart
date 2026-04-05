@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-// ignore_for_file: avoid-missing-enum-constant-in-map
+// ignore_for_file: avoid-missing-enum-constant-in-map — Bcp47LangTagSubtag.privateUse is intentionally absent from canonicalization maps (private-use subtags are not canonicalized)
 
 import 'package:ac_dart_essentials/ac_dart_essentials.dart';
 import 'package:collection/collection.dart';

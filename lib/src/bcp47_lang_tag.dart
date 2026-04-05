@@ -93,7 +93,7 @@ class Bcp47LangTag extends Bcp47LanguageTagMixin implements Bcp47LanguageTag {
     this.extensions = const [],
     this.privateUse,
   }) {
-    Bcp47Validator.validateLangTagSubtagsFormat(
+    bcp47ValidateLangTagSubtagsFormat(
       language: language,
       extlangs: extlangs,
       script: script,

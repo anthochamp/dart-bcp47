@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-04-05
+
+### Fixed
+
+- `Bcp47LanguageTag.parse` now uses typed `catch (e) { if (e is! ArgumentError) rethrow; }`
+  instead of `catch (_) {}`, preventing silent swallowing of genuine runtime errors.
+- `kIrregularTags` and `kRegularTags` replaced with explicit `const <String>[...]` list literals.
+
+### Changed
+
+- `Bcp47Subtags` changed from `Iterable<String>` to `List<String>`.
+- `Bcp47GrandfatheredTag.irregular` changed from `late final` to `final` (computed inline).
+- `Bcp47Lookup` and `Bcp47Validator` members promoted to top-level functions; deprecated class
+  wrappers retained for backward compatibility.
+
 ## [0.3.0] - 2026-03-28
 
 ### Fixed
