@@ -14,13 +14,13 @@ on:
 
 jobs:
   validate:
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@main
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-validate.yml@f18c705206817a77f896fc94a931b6f0f03b3f09 # main
 
   publish:
     needs: validate
     permissions:
       contents: read
-    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@main
+    uses: anthochamp/dev-toolbox/.github/workflows/dart-lib-publish.yml@f18c705206817a77f896fc94a931b6f0f03b3f09 # main
     with:
       dry-run: ${{ inputs.dry-run == 'true' }}
     secrets:
@@ -31,6 +31,6 @@ jobs:
     if: ${{ inputs.dry-run != 'true' }}
     permissions:
       contents: write
-    uses: anthochamp/dev-toolbox/.github/workflows/util-create-release.yml@main
+    uses: anthochamp/dev-toolbox/.github/workflows/util-create-release.yml@f18c705206817a77f896fc94a931b6f0f03b3f09 # main
     with:
       tag: ${{ needs.publish.outputs.tag }}
