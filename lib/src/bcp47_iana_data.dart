@@ -2,10 +2,12 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
+// ignore_for_file: lines_longer_than_80_chars
+
 // Generated from https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry.
-// Generation date: 2026-03-28
-// Registry date: 2025-08-25
-// Latest record of interest added date: 2024-12-12.
+// Generation date: 2026-07-01
+// Registry date: 2026-06-14
+// Latest record of interest added date: 2026-05-05.
 
 import 'bcp47_extended_language_range.dart';
 import 'bcp47_lang_tag.dart';
@@ -160,6 +162,8 @@ final kBcp47IanaPrefix = [
   [Bcp47LangTagSubtag.extlang, 'dsz', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Duano (added 2009-07-29)
   [Bcp47LangTagSubtag.extlang, 'dup', Bcp47ExtendedLanguageRange.parse('ms')],
+  // Bhutanese Sign Language (added 2026-04-09)
+  [Bcp47LangTagSubtag.extlang, 'dyl', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Ecuadorian Sign Language (added 2009-07-29)
   [Bcp47LangTagSubtag.extlang, 'ecs', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Miyakubo Sign Language (added 2021-02-20)
@@ -516,6 +520,8 @@ final kBcp47IanaPrefix = [
   [Bcp47LangTagSubtag.extlang, 'ysm', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Yue Chinese, Cantonese (added 2009-07-29)
   [Bcp47LangTagSubtag.extlang, 'yue', Bcp47ExtendedLanguageRange.parse('zh')],
+  // Kurdish Sign Language (added 2026-05-05)
+  [Bcp47LangTagSubtag.extlang, 'zhk', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Zimbabwe Sign Language (added 2009-07-29)
   [Bcp47LangTagSubtag.extlang, 'zib', Bcp47ExtendedLanguageRange.parse('sgn')],
   // Malay (individual language) (added 2009-07-29)
@@ -1160,6 +1166,12 @@ final kBcp47IanaPrefix = [
     'metelko',
     Bcp47ExtendedLanguageRange.parse('sl')
   ],
+  // The moderate (conservative, i.e. Danish-like) spelling variant of Bokmål (added 2026-04-21)
+  [
+    Bcp47LangTagSubtag.variant,
+    'moderat',
+    Bcp47ExtendedLanguageRange.parse('nb')
+  ],
   // Monotonic Greek (added 2006-12-11)
   [
     Bcp47LangTagSubtag.variant,
@@ -1284,6 +1296,12 @@ final kBcp47IanaPrefix = [
   ],
   // Puter idiom of Romansh (added 2010-06-29)
   [Bcp47LangTagSubtag.variant, 'puter', Bcp47ExtendedLanguageRange.parse('rm')],
+  // Radical (i.e. Nynorsk-like) spelling variant of Bokmål (added 2026-04-21)
+  [
+    Bcp47LangTagSubtag.variant,
+    'radikalt',
+    Bcp47ExtendedLanguageRange.parse('nb')
+  ],
   // Volapük rigik, Schleyer's Volapük, Original Volapük, Classic Volapük (added 2012-01-28)
   [Bcp47LangTagSubtag.variant, 'rigik', Bcp47ExtendedLanguageRange.parse('vo')],
   // Resian, Resianic, Rezijan (added 2005-10-16)
@@ -1314,6 +1332,12 @@ final kBcp47IanaPrefix = [
     'scouse',
     Bcp47ExtendedLanguageRange.parse('en')
   ],
+  // Sorbian dialect of Schleife (added 2026-04-09)
+  [
+    Bcp47LangTagSubtag.variant,
+    'slepe',
+    Bcp47ExtendedLanguageRange.parse('dsb')
+  ],
   // The Stolvizza dialect of Resian, The Solbica dialect of Resian (added 2007-07-05)
   [
     Bcp47LangTagSubtag.variant,
@@ -1337,6 +1361,8 @@ final kBcp47IanaPrefix = [
     'spanglis',
     Bcp47ExtendedLanguageRange.parse('es')
   ],
+  // The "Stadin slangi" dialect of Finnish (added 2026-04-09)
+  [Bcp47LangTagSubtag.variant, 'stadi', Bcp47ExtendedLanguageRange.parse('fi')],
   // Surmiran idiom of Romansh (added 2010-06-29)
   [
     Bcp47LangTagSubtag.variant,
@@ -1360,6 +1386,22 @@ final kBcp47IanaPrefix = [
     Bcp47LangTagSubtag.variant,
     'synnejyl',
     Bcp47ExtendedLanguageRange.parse('da')
+  ],
+  // Tagalog-English code-switching (added 2026-04-09)
+  [
+    Bcp47LangTagSubtag.variant,
+    'taglish',
+    Bcp47ExtendedLanguageRange.parse('en')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'taglish',
+    Bcp47ExtendedLanguageRange.parse('tl')
+  ],
+  [
+    Bcp47LangTagSubtag.variant,
+    'taglish',
+    Bcp47ExtendedLanguageRange.parse('fil')
   ],
   // Taiwanese Hokkien Romanization System for Hokkien languages, Tâi-lô orthography/romanization (added 2024-03-04)
   [
@@ -1483,6 +1525,8 @@ final kBcp47IanaPrefix = [
 
 // Preferred Language values
 final kBcp47IanaLanguagePreferredValue = [
+  // Bihari languages (added 2005-10-16, deprecated 2026-06-14)
+  ['bh', 'bih'],
   // Indonesian (added 2005-10-16, deprecated 1989-01-01)
   ['in', 'id'],
   // Hebrew (added 2005-10-16, deprecated 1989-01-01)
@@ -1691,6 +1735,8 @@ final kBcp47IanaLanguagePreferredValue = [
   ['yma', 'lrr'],
   // Mator-Taygi-Karagas (added 2009-07-29, deprecated 2015-02-12)
   ['ymt', 'mtm'],
+  // Yola (added 2009-07-29, deprecated 2026-04-09)
+  ['yol', 'enm'],
   // Yos (added 2009-07-29, deprecated 2013-09-10)
   ['yos', 'zom'],
   // Yugh (added 2009-07-29, deprecated 2014-02-28)
@@ -1849,6 +1895,8 @@ final kBcp47IanaExtlangPreferredValue = [
   [Bcp47ExtendedLanguageRange.parse('sgn-dsz'), 'dsz', 'dsz'],
   // Duano (added 2009-07-29)
   [Bcp47ExtendedLanguageRange.parse('ms-dup'), 'dup', 'dup'],
+  // Bhutanese Sign Language (added 2026-04-09)
+  [Bcp47ExtendedLanguageRange.parse('sgn-dyl'), 'dyl', 'dyl'],
   // Ecuadorian Sign Language (added 2009-07-29)
   [Bcp47ExtendedLanguageRange.parse('sgn-ecs'), 'ecs', 'ecs'],
   // Miyakubo Sign Language (added 2021-02-20)
@@ -2205,6 +2253,8 @@ final kBcp47IanaExtlangPreferredValue = [
   [Bcp47ExtendedLanguageRange.parse('sgn-ysm'), 'ysm', 'ysm'],
   // Yue Chinese, Cantonese (added 2009-07-29)
   [Bcp47ExtendedLanguageRange.parse('zh-yue'), 'yue', 'yue'],
+  // Kurdish Sign Language (added 2026-05-05)
+  [Bcp47ExtendedLanguageRange.parse('sgn-zhk'), 'zhk', 'zhk'],
   // Zimbabwe Sign Language (added 2009-07-29)
   [Bcp47ExtendedLanguageRange.parse('sgn-zib'), 'zib', 'zib'],
   // Malay (individual language) (added 2009-07-29)
@@ -2493,7 +2543,7 @@ final kBcp47IanaLanguageSuppressScript = [
   ['no', 'Latn'],
   // South Ndebele (added 2005-10-16)
   ['nr', 'Latn'],
-  // Nyanja, Chewa, Chichewa (added 2005-10-16)
+  // Chichewa, Chewa, Nyanja (added 2005-10-16)
   ['ny', 'Latn'],
   // Oromo (added 2005-10-16)
   ['om', 'Latn'],
